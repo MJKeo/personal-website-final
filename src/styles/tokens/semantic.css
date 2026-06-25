@@ -1,0 +1,83 @@
+/* =============================================================================
+   TIER 2 — SEMANTIC TOKENS  ("what the color is FOR")
+   -----------------------------------------------------------------------------
+   The layer components actually consume. It maps raw primitives onto roles,
+   so components reference meaning (var(--color-primary)) rather than raw hex.
+   Dark mode just re-points these names — components never change.
+
+   Palette: FERN (sage primary · terracotta accent · sand neutrals).
+     Light = :root default.   Dark = follows the OS via prefers-color-scheme.
+
+   Token roles:
+     SURFACES   bg · surface · border
+     CONTENT    text · text-muted
+     PRIMARY    primary · primary-hover · on-primary · primary-text
+                · primary-subtle · on-primary-subtle
+     SECONDARY  (same six as primary)
+     STATUS     success / error / warning / info  →  solid · subtle · text
+     UTILITY    focus ring · card shadow
+   ========================================================================== */
+
+/* ---- LIGHT (default) ----------------------------------------------------- */
+:root {
+  --color-bg:                #faf6f2;  /* sand-50  */
+  --color-surface:           #ffffff;
+  --color-border:            #e5dace;  /* sand-200 */
+  --color-text:              #29231e;  /* sand-900 */
+  --color-text-muted:        #6b5f4f;  /* sand-600 */
+
+  --color-primary:           #4c6f3d;  /* sage-600 */
+  --color-primary-hover:     #3e5a33;  /* sage-700 */
+  --color-on-primary:        #ffffff;
+  --color-primary-text:      #3e5a33;
+  --color-primary-subtle:    #f3f6f1;  /* sage-50 */
+  --color-on-primary-subtle: #33492b;  /* sage-800 */
+
+  --color-secondary:           #b8472c;  /* clay-600 — subdued accent */
+  --color-secondary-hover:     #983a26;  /* clay-700 */
+  --color-on-secondary:        #ffffff;
+  --color-secondary-text:      #983a26;
+  --color-secondary-subtle:    #fcf4f1;  /* clay-50 */
+  --color-on-secondary-subtle: #7a3122;  /* clay-800 */
+
+  --color-success:        #16a34a;  --color-success-subtle: #f0fdf4;  --color-success-text: #15803d;
+  --color-error:          #dc2626;  --color-error-subtle:   #fef2f2;  --color-error-text:   #b91c1c;
+  --color-warning:        #f59e0b;  --color-warning-subtle: #fffbeb;  --color-warning-text: #b45309;
+  --color-info:           #2563eb;  --color-info-subtle:    #eff6ff;  --color-info-text:    #1d4ed8;
+
+  --color-focus:  #5f8a4c;
+  --shadow-card:  0 1px 3px rgba(41, 35, 30, 0.10), 0 1px 2px rgba(41, 35, 30, 0.06);
+}
+
+/* ---- DARK (follows the user's system appearance) ------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+  --color-bg:                #1a1611;  /* sand-950 */
+  --color-surface:           #29231e;  /* sand-900 */
+  --color-border:            #3a332c;  /* sand-800 */
+  --color-text:              #faf6f2;  /* sand-50  */
+  --color-text-muted:        #b0a18e;  /* sand-400 */
+
+  --color-primary:           #7fa86b;  /* sage-400 */
+  --color-primary-hover:     #a3c293;  /* sage-300 */
+  --color-on-primary:        #1a1611;
+  --color-primary-text:      #a3c293;
+  --color-primary-subtle:    #1a2416;  /* sage-950 */
+  --color-on-primary-subtle: #c7d8bd;  /* sage-200 */
+
+  --color-secondary:           #e07a5f;  /* clay-400 */
+  --color-secondary-hover:     #e5a48b;  /* clay-300 */
+  --color-on-secondary:        #1a1611;
+  --color-secondary-text:      #e5a48b;
+  --color-secondary-subtle:    #371310;  /* clay-950 */
+  --color-on-secondary-subtle: #f0c9ba;  /* clay-200 */
+
+  --color-success:        #22c55e;  --color-success-subtle: #052e16;  --color-success-text: #4ade80;
+  --color-error:          #ef4444;  --color-error-subtle:   #450a0a;  --color-error-text:   #f87171;
+  --color-warning:        #fbbf24;  --color-warning-subtle: #451a03;  --color-warning-text: #fbbf24;
+  --color-info:           #60a5fa;  --color-info-subtle:    #172554;  --color-info-text:    #60a5fa;
+
+  --color-focus:  #7fa86b;
+  --shadow-card:  0 2px 8px rgba(0, 0, 0, 0.45);
+  }
+}

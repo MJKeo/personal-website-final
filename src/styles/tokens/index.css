@@ -1,0 +1,15 @@
+/* =============================================================================
+   DESIGN TOKENS — barrel import
+   -----------------------------------------------------------------------------
+   Import order matters: primitives must load before semantic, because the
+   semantic layer references primitive values.
+
+       Tier 1  primitives.css   raw color ramps
+       Tier 2  semantic.css     role-based tokens (what components consume)
+
+   Usage in any stylesheet:   color: var(--color-text);
+   Never reach past the semantic layer into a primitive from a component.
+   ========================================================================== */
+
+@import "./primitives.css";
+@import "./semantic.css";

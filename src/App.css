@@ -1,38 +1,87 @@
-.App {
+@import './styles/tokens/index.css';
+
+/* Base styles — all colors come from the Fern design tokens (var(--color-*)). */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Hero / landing ------------------------------------------------------ */
+.hero {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(72px, 14vh, 140px) 24px 96px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.hero__badge {
+  display: inline-flex;
   align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--color-secondary-subtle);
+  color: var(--color-secondary-text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.hero__badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-secondary);
+  animation: hero-pulse 2s ease-in-out infinite;
+}
+
+@keyframes hero-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.4; transform: scale(0.7); }
+}
+
+.hero__avatar {
+  display: block;
+  width: clamp(112px, 22vw, 160px);
+  height: clamp(112px, 22vw, 160px);
+  margin: 32px auto 0;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: var(--shadow-card);
+}
+
+.hero__title {
+  margin: 20px 0 0;
+  font-size: clamp(1.9rem, 5vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.hero__tagline {
+  margin: 16px auto 0;
+  max-width: 540px;
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  color: var(--color-text-muted);
+}
+
+.hero__note {
+  margin: 32px 0 16px;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+.hero__social {
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@media (prefers-reduced-motion: reduce) {
+  .hero__badge-dot { animation: none; }
 }

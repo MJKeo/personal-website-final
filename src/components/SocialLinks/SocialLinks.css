@@ -1,0 +1,37 @@
+/* Row of circular icon links — themes via Fern semantic tokens. */
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.social-links__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-size: 1.2rem;
+  transition: color 0.15s ease, border-color 0.15s ease,
+              background-color 0.15s ease, transform 0.1s ease;
+}
+
+.social-links__link:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  background: var(--color-primary-subtle);
+  transform: translateY(-2px);
+}
+
+.social-links__link:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
