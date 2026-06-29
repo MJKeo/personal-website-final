@@ -11,6 +11,9 @@
 # production
 /build
 
+# personal context files
+/personal_context
+
 # misc
 .DS_Store
 .env.local

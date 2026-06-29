@@ -1,0 +1,50 @@
+---
+description: Core structural conventions for this React site — screens, components, and color tokens. Apply whenever adding or changing UI.
+globs:
+  - "src/**/*.js"
+  - "src/**/*.css"
+alwaysApply: true
+---
+
+# Coding conventions
+
+These are non-negotiable structural rules for this codebase. Follow them for
+every UI change. See `ARCHITECTURE.md` for the full map.
+
+## 1. New screens → their own route + their own entry in `src/screens/`
+
+- A "screen" is a full page (a navbar tab or a project/experience/game detail
+  page). It must **not** be a component swapped into the existing page.
+- Every new screen gets its **own route** registered in `src/App.js` (React
+  Router) and its **own folder** `src/screens/<Name>/` with paired
+  `<Name>.js` + (optional) `<Name>.css`.
+- Screens compose reusable components; they are the only place page-specific
+  layout lives. Navigating between screens must go through a route change
+  (use `<AppLink>` / router links, never a full page reload for internal paths).
+
+## 2. New components → reusable, in `src/components/`
+
+- Every new component goes in `src/components/<Name>/` as paired
+  `<Name>.js` + `<Name>.css`, with a JSDoc prop header.
+- Components must be **generic and reusable**: all content comes in via props,
+  no hard-coded page copy. If you find yourself writing screen-specific text or
+  data inside a component, lift it to the screen or to `src/content/`.
+- Reuse before you build: check `src/components/` for an existing component
+  (e.g. `ProjectCard`, `CardGrid`, `Section`, `Tag`) before adding a new one.
+
+## 3. Colors → primitives / semantic token files only
+
+- **Never hard-code a color** (hex, rgb, hsl, named) in a component or screen
+  CSS. Always use a semantic token: `var(--color-*)`.
+- To add a color: add the raw value as a **primitive** in
+  `src/styles/tokens/primitives.css` (a `--<family>-<step>` ramp value), then
+  map it to a **semantic role** in `src/styles/tokens/semantic.css`
+  (`--color-*`), wiring both the light `:root` and the dark
+  `prefers-color-scheme` block. Components consume only the semantic token.
+
+## Quick checklist before committing UI work
+
+- [ ] New page? → routed in `App.js` **and** a folder in `src/screens/`.
+- [ ] New component? → in `src/components/`, prop-driven, JSDoc'd, reusable.
+- [ ] Any new color? → added to `primitives.css` + `semantic.css`, consumed via `var(--color-*)`.
+- [ ] No hard-coded hex/rgb in component or screen CSS.

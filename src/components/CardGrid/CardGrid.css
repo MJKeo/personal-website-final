@@ -1,0 +1,19 @@
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--card-grid-min, 280px), 1fr));
+}
+
+.card-grid--gap-sm { gap: 16px; }
+.card-grid--gap-md { gap: 24px; }
+.card-grid--gap-lg { gap: 32px; }
+
+/* Honor an explicit column cap when provided. */
+.card-grid[data-capped='true'] {
+  grid-template-columns: repeat(var(--card-grid-max-cols), minmax(0, 1fr));
+}
+
+@media (max-width: 720px) {
+  .card-grid[data-capped='true'] {
+    grid-template-columns: 1fr;
+  }
+}

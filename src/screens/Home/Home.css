@@ -1,0 +1,86 @@
+/* Hero stage — the positioned, clipped region the particle field lives in.
+   Spans the hero + the "three pieces of evidence" section; clipping here keeps
+   the particles within that band and out of the sections below it. */
+.home__hero-stage {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Every section inside the stage sits above the particle canvas (z-index 0). */
+.home__hero-stage > .section {
+  position: relative;
+  z-index: 1;
+}
+
+.home__hero-band {
+  padding-top: clamp(56px, 11vh, 120px);
+  /* Tighten the gap into "The Proof" — well under the default section bottom
+     padding of clamp(48px, 9vh, 96px). */
+  padding-bottom: clamp(24px, 4.5vh, 48px);
+}
+
+/* Give the hero pitch more room than the standard narrow band so the
+   smaller-font paragraphs span a wider, more readable column. */
+.home__hero-band .section__inner {
+  max-width: 840px;
+}
+
+/* Flagship evidence stacked full-width (each card lays out side-by-side itself). */
+.home__flagships {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Evidence section: tighten the rhythm around the "More experiences" link —
+   the gap above it (margin-top) and below it (section padding-bottom) match. */
+.home__evidence {
+  /* Match the hero band's tightened bottom padding so the two sections sit
+     closer together than the default section rhythm. */
+  padding-top: clamp(24px, 4.5vh, 48px);
+  padding-bottom: clamp(36px, 6.75vh, 72px);
+}
+
+.home__flagships-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(36px, 6.75vh, 72px);
+}
+
+/* Text CTA matching the card's "Learn more →" — underlines on hover. */
+.home__evidence-link {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-primary-text);
+  text-decoration: none;
+}
+
+.home__evidence-link:hover {
+  text-decoration: underline;
+}
+
+/* Project sections (AI + wider portfolio) carry the secondary (clay) accent —
+   section eyebrow, card eyebrow/subtitle, and the "Take a look" CTA — to set
+   them apart from the primary (sage) accent used by the evidence ("The Proof")
+   section above. */
+.home__projects .section-heading__eyebrow,
+.home__projects .project-card__eyebrow,
+.home__projects .project-card__subtitle,
+.home__projects .project-card__cta {
+  color: var(--color-secondary-text);
+}
+
+/* Card hover accent follows the same secondary color in these sections. */
+.home__projects .project-card:hover {
+  border-color: var(--color-secondary);
+}
+
+/* The carousel (hscroll) page dots in these sections follow the secondary
+   accent too — active fill and hover. */
+.home__projects .carousel__dot:hover {
+  background: var(--color-secondary-hover);
+}
+
+.home__projects .carousel__dot--active {
+  background: var(--color-secondary);
+}

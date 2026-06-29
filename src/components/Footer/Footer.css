@@ -1,0 +1,74 @@
+/* Site footer — deep-fern brand band. Colors come from the footer semantic
+   tokens (var(--color-footer-*)), so it stays consistent in light + dark. */
+
+.site-footer {
+  background: var(--color-footer-bg);
+  color: var(--color-footer-text);
+  border-top: 1px solid var(--color-footer-border);
+}
+
+.site-footer__inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 56px 24px 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 64px;
+}
+
+.site-footer__section {
+  flex: 1 1 220px;
+}
+
+.site-footer__heading {
+  margin: 0 0 16px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-footer-heading);
+}
+
+.site-footer__email {
+  color: var(--color-footer-link);
+  font-size: 1rem;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease, color 0.15s ease;
+  /* keep the address selectable / copyable as plain text */
+  user-select: text;
+}
+
+.site-footer__email:hover {
+  border-bottom-color: var(--color-footer-link);
+}
+
+.site-footer__email:focus-visible {
+  outline: 2px solid var(--color-footer-text-muted);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---- icon links, re-themed for the dark footer band --------------------- */
+.site-footer__social .social-links__link {
+  border-color: var(--color-footer-border);
+  background: transparent;
+  color: var(--color-footer-icon);
+}
+
+.site-footer__social .social-links__link:hover {
+  border-color: var(--color-footer-icon-hover);
+  background: var(--color-footer-icon-hover);
+  color: var(--color-footer-heading);
+}
+
+.site-footer__social .social-links__link:focus-visible {
+  outline-color: var(--color-footer-text-muted);
+}
+
+.site-footer__copyright {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 24px 40px;
+  font-size: 0.85rem;
+  color: var(--color-footer-text-muted);
+}

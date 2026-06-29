@@ -1,0 +1,71 @@
+.in-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  min-height: 60vh;
+  padding: 64px 24px;
+  text-align: center;
+}
+
+.in-progress__art {
+  width: clamp(180px, 42vw, 260px);
+  height: auto;
+}
+
+.in-progress__text {
+  margin: 0;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+/* ---- Animation -----------------------------------------------------------
+   Each animated piece spins/bobs around its own box center. */
+.in-progress__bot,
+.in-progress__gear,
+.in-progress__wave {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.in-progress__bot   { animation: ip-bob 3.6s ease-in-out infinite; }
+.in-progress__blink { animation: ip-blink 1.6s ease-in-out infinite; }
+.in-progress__gear--a { animation: ip-spin 9s linear infinite; }
+.in-progress__gear--b { animation: ip-spin 7s linear infinite reverse; }
+.in-progress__gear--c { animation: ip-spin 5s linear infinite; }
+.in-progress__wave {
+  transform-origin: 25% 80%;
+  animation: ip-wave 2.2s ease-in-out infinite;
+}
+
+@keyframes ip-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+@keyframes ip-blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.3; }
+}
+
+@keyframes ip-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ip-wave {
+  0%, 100% { transform: rotate(0deg); }
+  50%      { transform: rotate(15deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .in-progress__bot,
+  .in-progress__blink,
+  .in-progress__gear--a,
+  .in-progress__gear--b,
+  .in-progress__gear--c,
+  .in-progress__wave {
+    animation: none;
+  }
+}

@@ -1,0 +1,20 @@
+/* Generic decorative particle layer — fills and is clipped to its parent, and
+   never intercepts pointer events so it can sit behind real UI. */
+
+.particle-field {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  /* Fill color, themed via semantic tokens (the canvas reads its computed
+     `color`, which dark mode re-points automatically). */
+  --particle-color: var(--color-secondary);
+}
+
+.particle-field__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: var(--particle-color);
+}

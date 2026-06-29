@@ -1,0 +1,21 @@
+/* Page section band — consistent width + vertical rhythm, themed via tokens. */
+
+.section {
+  padding: clamp(48px, 9vh, 96px) 24px;
+}
+
+.section--muted {
+  background: var(--color-surface-muted);
+}
+
+.section__inner {
+  margin: 0 auto;
+}
+
+.section__inner--narrow  { max-width: 720px; }
+.section__inner--default { max-width: 1040px; }
+.section__inner--wide    { max-width: 1200px; }
+
+@media (max-width: 560px) {
+  .section { padding: 48px 16px; }
+}

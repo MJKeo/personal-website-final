@@ -1,0 +1,68 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.hero--center {
+  align-items: center;
+  text-align: center;
+}
+
+.hero__avatar {
+  width: clamp(96px, 18vw, 132px);
+  height: clamp(96px, 18vw, 132px);
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 4px;
+}
+
+.hero__eyebrow {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-primary-text);
+}
+
+.hero__title {
+  margin: 0;
+  /* 40% smaller than the original clamp(2.1rem, 6vw, 3.4rem). */
+  font-size: clamp(1.26rem, 3.6vw, 2.04rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.hero__subtitle {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-primary-text);
+}
+
+.hero__lead {
+  margin: 0;
+  max-width: 800px;
+  font-size: clamp(0.92rem, 1.95vw, 1.12rem);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.hero--center .hero__lead { margin-inline: auto; }
+
+/* Extra breathing room between the tagline and the pitch paragraph,
+   on top of the base flex gap. */
+.hero__subtitle + .hero__lead { margin-top: 30px; }
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.hero--center .hero__actions { justify-content: center; }

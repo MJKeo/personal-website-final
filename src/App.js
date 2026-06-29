@@ -1,47 +1,66 @@
-import { FaLinkedinIn, FaGithub, FaEtsy } from 'react-icons/fa';
+import { Routes, Route, Outlet, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Button from './components/Button/Button';
-import SocialLinks from './components/SocialLinks/SocialLinks';
+import Footer from './components/Footer/Footer';
+import { NAV_LINKS, SOCIAL_LINKS, CONTACT_EMAIL, RESUME } from './content/site';
+import Home from './screens/Home/Home';
+import Projects from './screens/Projects/Projects';
+import Experience from './screens/Experience/Experience';
+import Games from './screens/Games/Games';
+import WorkDetail from './screens/WorkDetail/WorkDetail';
+import NotFound from './screens/NotFound/NotFound';
 import './App.css';
 
-const SOCIAL_LINKS = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/michael-keohane', icon: FaLinkedinIn },
-  { label: 'GitHub', href: 'https://github.com/MJKeo', icon: FaGithub },
-  { label: 'Etsy', href: 'https://www.etsy.com/shop/KeohanePhotography', icon: FaEtsy },
-];
+/** Reset scroll on every route change. */
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    try {
+      window.scrollTo(0, 0);
+    } catch {
+      /* jsdom / SSR: scrollTo may be unavailable */
+    }
+  }, [pathname]);
+  return null;
+}
+
+/** Shared chrome: navbar + routed screen (<Outlet>) + footer. */
+function Layout() {
+  return (
+    <>
+      <Navbar
+        links={NAV_LINKS}
+        actions={
+          <Button href={RESUME.href} external variant="primary">
+            {RESUME.label}
+          </Button>
+        }
+      />
+      <main className="app-main">
+        <Outlet />
+      </main>
+      <Footer email={CONTACT_EMAIL} socialLinks={SOCIAL_LINKS} />
+    </>
+  );
+}
 
 function App() {
   return (
     <>
-      <Navbar
-        links={[{ label: 'Home', href: '/' }]}
-        actions={
-          <Button href="/resume_summer_2026.pdf" external variant="primary">
-            Resume
-          </Button>
-        }
-      />
-
-      <main className="hero">
-        <img className="hero__avatar" src="/icon.png" alt="Michael Keohane" />
-
-        <h1 className="hero__title">Michael Keohane</h1>
-
-        <p className="hero__tagline">
-          I&apos;m a full-stack software engineer who turns ambiguous problems into
-          shipped products, combining zero-to-one product execution, large-scale
-          systems, and production LLM engineering.
-        </p>
-
-        <span className="hero__badge">
-          <span className="hero__badge-dot" aria-hidden="true" />
-          Under active development
-        </span>
-
-        <p className="hero__note">Check back soon. In the meantime, find me here:</p>
-
-        <SocialLinks className="hero__social" links={SOCIAL_LINKS} />
-      </main>
+      <ScrollToTop />
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/:slug" element={<WorkDetail />} />
+          <Route path="/experience" element={<Experience />} />
+          <Route path="/experience/:slug" element={<WorkDetail />} />
+          <Route path="/games" element={<Games />} />
+          <Route path="/games/:slug" element={<WorkDetail />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
     </>
   );
 }
