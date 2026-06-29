@@ -27,8 +27,20 @@ Format:
 - [ ] 2026-06-26 — Write the flagship detail pages (CineMind, Meta, Home Depot).
   Routes `/projects/:slug` & `/experience/:slug` exist but render `<InProgress>`;
   replace `WorkDetail` (or add per-item screens) with real write-ups.
-- [ ] 2026-06-26 — Build out the index screens (Projects, Experience, Games) and
-  the AI / earlier-work detail pages — all currently render `<InProgress>`.
+- [ ] 2026-06-26 — Build out the index screens (Projects, Games) and the AI /
+  earlier-work detail pages — all currently render `<InProgress>`. _Experience
+  index done 2026-06-29: `/experience` now renders a grid of `EXPERIENCES` cards
+  (`src/screens/Experience/Experience.js`)._ _Projects index done 2026-06-29:
+  `/projects` now renders a grid of the new `PROJECTS` list (CineMind + the 3 AI
+  explorations + the 6 earlier-work cards, in homepage order) via
+  `src/screens/Projects/Projects.js`, same `PageHeader` + `CardGrid` +
+  `ProjectCard` pattern as Experience. Games index still pending._
+- [ ] 2026-06-29 — Reconcile the duplicated experience entries when the experience
+  detail pages get built: `instagram` and `orangeworks-innovation-lab` live in both
+  `FLAGSHIPS` (long summary, homepage) and `EXPERIENCES` (one-sentence, Experience
+  screen) with the same slugs, so `EXPERIENCES` is deliberately kept out of
+  `ALL_WORK`/`bySlug` to avoid a slug clash. Merge to one source (or have the
+  homepage derive from `EXPERIENCES`) once `bySlug` must resolve those slugs.
 - [ ] 2026-06-26 — Confirm flagged facts before publishing externally: Home Depot
   "shipped 2023 / millions in transactions" links to the 2020 Pro Xtra
   pre-auth app; CineMind token cost (~$1,176 in writeup vs. "unverified ~$1,200"

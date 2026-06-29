@@ -21,10 +21,11 @@ Current state: the persuasive **homepage is built**. A React + React Router
 system. The homepage lands the core argument above the fold and leads with
 CineMind, Meta, and Home Depot as the three evidence pieces, followed by
 horizontal-scroll carousels of the broader AI-year work and the wider (non-AI)
-portfolio. Interior pages (Projects/Experience/Games index pages + every detail
-page) are real routes but still render a shared in-progress placeholder. Writing
-those out — plus real project copy and images — is the remaining work (see
-`TODOs.md`).
+portfolio. The **Experience index** (`/experience`) is now built — a grid of
+work-history cards. The remaining interior pages (Projects/Games index pages +
+every detail page) are real routes but still render a shared in-progress
+placeholder. Writing those out — plus real project copy and images — is the
+remaining work (see `TODOs.md`).
 
 ---
 

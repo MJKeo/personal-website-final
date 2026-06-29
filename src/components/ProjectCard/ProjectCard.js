@@ -19,15 +19,17 @@ import './ProjectCard.css';
  * @param {'feature'|'compact'} [props.variant='compact']
  * @param {string} [props.ctaLabel='View details']
  * @param {boolean} [props.showTags=true]  Render the item's tags chips on the card.
+ * @param {'16/9'|'4/3'|'1/1'} [props.coverRatio]  Override the thumbnail aspect
+ *        ratio (defaults to 16/9 for `feature`, 4/3 for `compact`).
  */
-function ProjectCard({ item, variant = 'compact', ctaLabel = 'View details', showTags = true }) {
+function ProjectCard({ item, variant = 'compact', ctaLabel = 'View details', showTags = true, coverRatio }) {
   const { href, eyebrow, title, subtitle, summary, cover, bullets = [], tags = [] } = item;
   const isFeature = variant === 'feature';
 
   return (
     <AppLink href={href} className={`project-card project-card--${variant}`}>
       <div className="project-card__media">
-        <Thumbnail src={cover} label={title} ratio={isFeature ? '16/9' : '4/3'} />
+        <Thumbnail src={cover} label={title} ratio={coverRatio || (isFeature ? '16/9' : '4/3')} />
       </div>
 
       <div className="project-card__body">

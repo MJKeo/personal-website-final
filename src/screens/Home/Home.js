@@ -106,7 +106,7 @@ function Home() {
         </Section>
       </div>
 
-      <Section muted className="home__projects">
+      <Section muted>
         <SectionHeading
           eyebrow="LLM Engineering"
           title="AI-Native Applications"
@@ -118,7 +118,7 @@ function Home() {
         </CardCarousel>
       </Section>
 
-      <Section className="home__projects">
+      <Section>
         <SectionHeading
           eyebrow="The Wider Portfolio"
           title="Apps, Games & Research"

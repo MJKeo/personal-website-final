@@ -13,7 +13,8 @@
 }
 
 .home__hero-band {
-  padding-top: clamp(56px, 11vh, 120px);
+  /* Drop the hero further below the sticky navbar (more icon-to-navbar room). */
+  padding-top: clamp(96px, 16vh, 180px);
   /* Tighten the gap into "The Proof" — well under the default section bottom
      padding of clamp(48px, 9vh, 96px). */
   padding-bottom: clamp(24px, 4.5vh, 48px);
@@ -23,6 +24,19 @@
    smaller-font paragraphs span a wider, more readable column. */
 .home__hero-band .section__inner {
   max-width: 840px;
+}
+
+/* Fixed 18px pitch copy (overrides the generic Hero lead clamp). */
+.home__hero-band .hero__lead {
+  font-size: 18px;
+}
+
+/* Keep the subtitle→pitch gap close to the pitch→"The Proof" gap (this band's
+   bottom padding + the evidence section's top padding = 2 × the clamp below).
+   We subtract the hero's 18px flex gap, plus a small 8px trim so the top gap
+   sits just slightly tighter than the lower one. */
+.home__hero-band .hero__subtitle + .hero__lead {
+  margin-top: calc(2 * clamp(24px, 4.5vh, 48px) - 26px);
 }
 
 /* Flagship evidence stacked full-width (each card lays out side-by-side itself). */
@@ -59,28 +73,10 @@
   text-decoration: underline;
 }
 
-/* Project sections (AI + wider portfolio) carry the secondary (clay) accent —
-   section eyebrow, card eyebrow/subtitle, and the "Take a look" CTA — to set
-   them apart from the primary (sage) accent used by the evidence ("The Proof")
-   section above. */
-.home__projects .section-heading__eyebrow,
-.home__projects .project-card__eyebrow,
-.home__projects .project-card__subtitle,
-.home__projects .project-card__cta {
+/* The "Key Experiences" ("The Proof") flagship taglines carry the secondary
+   (clay) accent, setting the experience subtitles apart from the otherwise
+   primary (sage) accent the cards use. The project sections below inherit the
+   default primary (sage) accent from the card / carousel components. */
+.home__evidence .project-card__subtitle {
   color: var(--color-secondary-text);
-}
-
-/* Card hover accent follows the same secondary color in these sections. */
-.home__projects .project-card:hover {
-  border-color: var(--color-secondary);
-}
-
-/* The carousel (hscroll) page dots in these sections follow the secondary
-   accent too — active fill and hover. */
-.home__projects .carousel__dot:hover {
-  background: var(--color-secondary-hover);
-}
-
-.home__projects .carousel__dot--active {
-  background: var(--color-secondary);
 }

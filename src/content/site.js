@@ -25,8 +25,8 @@ export const RESUME = {
 /** Primary navigation. Internal routes render as client-side links. */
 export const NAV_LINKS = [
   { label: 'Home', href: '/' },
+  { label: 'Experiences', href: '/experience' },
   { label: 'Projects', href: '/projects' },
-  { label: 'Experience', href: '/experience' },
   { label: 'Games', href: '/games' },
 ];
 

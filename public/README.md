@@ -25,23 +25,30 @@ public/
 │   ├── home-page/     Used only on the Home screen (`src/screens/Home/`).
 │   │   └── banana.png           Homepage <ParticleField> "banana" particle
 │   │
-│   ├── projects/      Project imagery — card cover art + detail-page media.
-│   │   ├── cinemind_banner.png        CineMind flagship card cover (wired)
-│   │   ├── interview_pro_banner.png   InterviewPro card cover (wired)
-│   │   ├── nerdbot_banner.png         NerdBot card cover (wired)
-│   │   ├── wizard_battle_banner.png   Wizard Battle card cover (wired)
-│   │   │   ── earlier-work covers (in card order), sourced from the old
-│   │   │      Personal-Website-2.0 icons; wired via each EARLIER_WORK `cover` ──
-│   │   ├── orm_strength_tracker_banner.png
-│   │   ├── tyes_banner.png
-│   │   ├── intelligent_tutoring_systems_banner.png  (low-res, 200×200 source)
-│   │   ├── ape_unit_banner.png
-│   │   ├── chaos_colleagues_banner.png
-│   │   └── project_shatter_banner.png
+│   ├── projects/      Project imagery — one sub-folder per item, named by `slug`.
+│   │                  Each holds `banner.png` (card cover) + an `additional-images/`
+│   │                  folder for detail-page media (empty for now).
+│   │   ├── cinemind/                      CineMind flagship (wired)
+│   │   ├── interviewpro/                  InterviewPro (wired)
+│   │   ├── nerdbot/                       NerdBot (wired)
+│   │   ├── wizard-battle/                 Wizard Battle (wired)
+│   │   │   ── earlier-work covers, sourced from the old Personal-Website-2.0
+│   │   │      icons; wired via each EARLIER_WORK `cover` ──
+│   │   ├── orm-strength-tracker/
+│   │   ├── tyes/
+│   │   ├── intelligent-tutoring-systems/  (banner from low-res, 200×200 source)
+│   │   ├── ape-unit/
+│   │   ├── chaos-colleagues/
+│   │   └── project-shatter/
 │   │
-│   └── experiences/   Experience imagery — card cover art + detail-page media.
-│       ├── instagram_banner.png     Instagram flagship card cover
-│       └── orangeworks_banner.png   OrangeWorks flagship card cover
+│   └── experiences/   Experience imagery — same per-`slug` sub-folder layout
+│       │              (`banner.png` + `additional-images/`). One per EXPERIENCES
+│       │              card; all banners 16:9.
+│       ├── instagram/                   Instagram flagship
+│       ├── orangeworks-innovation-lab/  OrangeWorks (Home Depot) flagship
+│       ├── facebook/                    Facebook
+│       ├── mealme/                      MealMe
+│       └── dcu/                         Digital Federal Credit Union
 │
 ├── index.html         HTML shell
 ├── manifest.json      PWA manifest
@@ -60,10 +67,11 @@ public/
 - **If you move or rename an image, update every reference.** Common reference
   sites: `public/index.html`, `public/manifest.json`, `src/content/`
   (`site.js`, `work.js`), and the screen/component that renders it.
-- Card covers follow `<slug>_banner.png` and live in the folder matching the
-  item's domain — project covers in `projects/`, experience covers in
-  `experiences/` (e.g. CineMind is a project → `projects/cinemind_banner.png`) —
-  wired via the `cover` field in `src/content/work.js`.
+- Each item gets its own sub-folder named by its `slug`, under the folder
+  matching its domain — projects in `projects/`, experiences in `experiences/`
+  (e.g. CineMind is a project → `projects/cinemind/`). Inside it, the card cover
+  is always `banner.png` (wired via the `cover` field in `src/content/work.js`),
+  and `additional-images/` holds any detail-page media.
 - An empty folder keeps a `.gitkeep` so it stays in version control; delete it
-  once real images land. Both `projects/` and `experiences/` now hold real covers
-  but still carry a leftover `.gitkeep` that can be removed.
+  once real images land. Every `additional-images/` carries a `.gitkeep` while
+  empty.

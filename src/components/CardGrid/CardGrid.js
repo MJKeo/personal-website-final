@@ -5,12 +5,14 @@ import './CardGrid.css';
  * by `columns`) and collapses to one column on narrow screens.
  *
  * @param {object} props
- * @param {number} [props.min=280]     Minimum column width in px.
+ * @param {number} [props.min=300]     Minimum column width in px. The default
+ *        fits 3 columns across the standard 1040px section at full width,
+ *        degrading to 2 then 1 as the viewport narrows.
  * @param {number} [props.columns]     Optional hard cap on column count.
  * @param {'sm'|'md'|'lg'} [props.gap='md']
  * @param {React.ReactNode} props.children
  */
-function CardGrid({ min = 280, columns, gap = 'md', children }) {
+function CardGrid({ min = 300, columns, gap = 'md', children }) {
   const style = {
     '--card-grid-min': `${min}px`,
     ...(columns ? { '--card-grid-max-cols': columns } : {}),
