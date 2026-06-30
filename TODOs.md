@@ -34,7 +34,16 @@ Format:
   `/projects` now renders a grid of the new `PROJECTS` list (CineMind + the 3 AI
   explorations + the 6 earlier-work cards, in homepage order) via
   `src/screens/Projects/Projects.js`, same `PageHeader` + `CardGrid` +
-  `ProjectCard` pattern as Experience. Games index still pending._
+  `ProjectCard` pattern as Experience._ _Games index done 2026-06-29: `/games` now
+  renders a grid of the new `GAMES` list (5 browser games ported from the old site)
+  via `src/screens/Games/Games.js`, same pattern, but each card passes `external`
+  so it links straight out to the live hosted game (no detail page). AI /
+  earlier-work detail pages still pending._
+- [ ] 2026-06-29 — Write the real one-line descriptions for the 5 games in `GAMES`
+  (`src/content/work.js`) — every `summary` is a `'Placeholder description — coming
+  soon.'` stub right now. Also confirm the "Minigame Mashup" cover (currently the
+  old flappy-ape icon) is the image Michael wants, since that game now points at
+  `ape-unit.github.io/MinigameMashup/`.
 - [ ] 2026-06-29 — Reconcile the duplicated experience entries when the experience
   detail pages get built: `instagram` and `orangeworks-innovation-lab` live in both
   `FLAGSHIPS` (long summary, homepage) and `EXPERIENCES` (one-sentence, Experience
@@ -60,7 +69,10 @@ Format:
   cards render real banners and copy. The section was later trimmed to 6 cards in
   a set order (ORM, Tyes, Intelligent Tutoring, Ape Unit, Chaos Colleagues,
   Project Shatter); the Let's Get Ready and THD Hackathon cards + their banner
-  files were removed. Caveat: the Intelligent Tutoring Systems source icon is only
+  files were removed. _Update 2026-06-29: Easy Budgeting (iOS budgeting app) was
+  later inserted before Ape Unit, making 7 earlier-work cards; its banner lives at
+  `public/images/projects/easy-budgeting/banner.png`._ Caveat: the Intelligent
+  Tutoring Systems source icon is only
   200×200 (low-res), and all are square logos/icons rather than wide banner art —
   worth replacing later._
 - [ ] 2026-06-29 — Replace the placeholder PWA identity in `public/manifest.json`

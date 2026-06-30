@@ -12,22 +12,25 @@ import './ProjectCard.css';
  *   'compact'  small card: thumbnail, title, summary, tags. Used for the
  *              "smaller paths" grid and index screens.
  *
- * The whole card is a single link to `item.href` (an internal route → client-side).
+ * The whole card is a single link to `item.href` — an internal route (→
+ * client-side) by default, or an external URL opened in a new tab when `external`
+ * is set (e.g. the Games screen links straight to each live, hosted game).
  *
  * @param {object} props
  * @param {object} props.item       A FLAGSHIPS/EXPLORATIONS entry (see content/work.js).
  * @param {'feature'|'compact'} [props.variant='compact']
  * @param {string} [props.ctaLabel='View details']
  * @param {boolean} [props.showTags=true]  Render the item's tags chips on the card.
+ * @param {boolean} [props.external=false]  Treat `item.href` as external (new tab + rel safety).
  * @param {'16/9'|'4/3'|'1/1'} [props.coverRatio]  Override the thumbnail aspect
  *        ratio (defaults to 16/9 for `feature`, 4/3 for `compact`).
  */
-function ProjectCard({ item, variant = 'compact', ctaLabel = 'View details', showTags = true, coverRatio }) {
+function ProjectCard({ item, variant = 'compact', ctaLabel = 'View details', showTags = true, external = false, coverRatio }) {
   const { href, eyebrow, title, subtitle, summary, cover, bullets = [], tags = [] } = item;
   const isFeature = variant === 'feature';
 
   return (
-    <AppLink href={href} className={`project-card project-card--${variant}`}>
+    <AppLink href={href} external={external} className={`project-card project-card--${variant}`}>
       <div className="project-card__media">
         <Thumbnail src={cover} label={title} ratio={coverRatio || (isFeature ? '16/9' : '4/3')} />
       </div>

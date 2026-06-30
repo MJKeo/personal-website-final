@@ -176,6 +176,15 @@ export const EARLIER_WORK = [
       'A classroom analytics platform that pulls together years of student performance data so teachers can spot weak assignments and struggling students, and students can see where they stand and where to improve.',
   },
   {
+    slug: 'easy-budgeting',
+    category: 'earlier',
+    href: '/projects/easy-budgeting',
+    title: 'Easy Budgeting',
+    cover: '/images/projects/easy-budgeting/banner.png',
+    summary:
+      'An iOS budgeting app built to cut the clutter of bloated finance apps; a clean, simple interface for tracking your spending habits and nothing you don\'t need.',
+  },
+  {
     slug: 'ape-unit',
     category: 'earlier',
     href: '/projects/ape-unit',
@@ -201,6 +210,68 @@ export const EARLIER_WORK = [
     cover: '/images/projects/project-shatter/banner.png',
     summary:
       'A platform concept that links rural Georgia students with paid, computing-related gig work from local businesses, so students who lack CS in school and can\'t afford to study instead of work can build real skills and earn income at the same time.',
+  },
+];
+
+/**
+ * GAMES — the browser games shown on the Games screen (`/games`). Unlike projects
+ * and experiences, these have **no detail page**: each card's `href` is the live,
+ * externally-hosted game itself (GitHub Pages), opened in a new tab. Covers are
+ * flat files under `public/images/games/<slug>.png` (no per-game sub-folder, since
+ * there's no detail page to hold additional media), sourced from the icons the old
+ * Personal-Website-2.0 games page used. Order mirrors that old page.
+ *
+ * `summary` is a placeholder on every entry for now — replace with a one-line
+ * description per game (see TODOs.md).
+ */
+export const GAMES = [
+  {
+    slug: 'worst-tic-tac-toe',
+    category: 'game',
+    href: 'https://mjkeo.github.io/Worst_TicTacToe/',
+    title: 'Worst Tic-Tac-Toe',
+    cover: '/images/games/worst-tic-tac-toe.png',
+    summary: 'A tic-tac-toe bot designed to make the worst decision possible for any given board state. See if you can lose.',
+  },
+  {
+    slug: 'squids-tower-defense',
+    category: 'game',
+    href: 'https://mjkeo.github.io/Squids-Tower-Defense/',
+    title: 'Squids Tower Defense',
+    cover: '/images/games/squids-tower-defense.png',
+    summary: 'I played a lot of Bloons Tower Defense so I made one using my friends as the towers.',
+  },
+  {
+    slug: 'snake',
+    category: 'game',
+    href: 'https://mjkeo.github.io/Snake/',
+    title: 'Snake',
+    cover: '/images/games/snake.png',
+    summary: 'A absolute classic that helped me learn javascript.',
+  },
+  {
+    slug: 'banandersnatch',
+    category: 'game',
+    href: 'https://mjkeo.github.io/Banandersnatch/',
+    title: 'Banandersnatch',
+    cover: '/images/games/banandersnatch.png',
+    summary: '[Apeunit] A choose your own adventure game inspired by Bandersnatched containing many secret endings.',
+  },
+  {
+    slug: 'flappy-ape',
+    category: 'game',
+    href: 'https://ape-unit.github.io/FlappyApe/',
+    title: 'Flappy Ape',
+    cover: '/images/games/flappy-ape.png',
+    summary: '[Apeunit] A complete ripoff of flappy bird but with apes and it\'s harder.',
+  },
+  {
+    slug: 'jump-ape',
+    category: 'game',
+    href: 'https://ape-unit.github.io/JumpAPE/',
+    title: 'Jump Ape',
+    cover: '/images/games/jump-ape.png',
+    summary: '[Apeunit] Jump over rocks as they get progressively faster.',
   },
 ];
 

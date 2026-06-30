@@ -37,18 +37,29 @@ public/
 │   │   ├── orm-strength-tracker/
 │   │   ├── tyes/
 │   │   ├── intelligent-tutoring-systems/  (banner from low-res, 200×200 source)
+│   │   ├── easy-budgeting/
 │   │   ├── ape-unit/
 │   │   ├── chaos-colleagues/
 │   │   └── project-shatter/
 │   │
-│   └── experiences/   Experience imagery — same per-`slug` sub-folder layout
-│       │              (`banner.png` + `additional-images/`). One per EXPERIENCES
-│       │              card; all banners 16:9.
-│       ├── instagram/                   Instagram flagship
-│       ├── orangeworks-innovation-lab/  OrangeWorks (Home Depot) flagship
-│       ├── facebook/                    Facebook
-│       ├── mealme/                      MealMe
-│       └── dcu/                         Digital Federal Credit Union
+│   ├── experiences/   Experience imagery — same per-`slug` sub-folder layout
+│   │   │              (`banner.png` + `additional-images/`). One per EXPERIENCES
+│   │   │              card; all banners 16:9.
+│   │   ├── instagram/                   Instagram flagship
+│   │   ├── orangeworks-innovation-lab/  OrangeWorks (Home Depot) flagship
+│   │   ├── facebook/                    Facebook
+│   │   ├── mealme/                      MealMe
+│   │   └── dcu/                         Digital Federal Credit Union
+│   │
+│   └── games/         Game cover icons — **flat, one file per game** (`<slug>.png`,
+│       │              NO per-game sub-folder): the Games cards link straight out to
+│       │              the live hosted game, so there are no detail pages / extra
+│       │              media to hold. Wired via each GAMES `cover` in work.js.
+│       ├── worst-tic-tac-toe.png
+│       ├── banandersnatch.png
+│       ├── squids-tower-defense.png
+│       ├── minigame-mashup.png
+│       └── snake.png
 │
 ├── index.html         HTML shell
 ├── manifest.json      PWA manifest

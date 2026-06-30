@@ -49,13 +49,20 @@ conventions — read it first when locating, adding, or moving any image.**
     `banner.png` card cover (wired via `work.js` `cover`) and an empty
     `additional-images/` for future detail-page media. Covers: `cinemind/`,
     `interviewpro/`, `nerdbot/`, `wizard-battle/` (CineMind flagship + the three
-    AI-year explorations), plus the 6 earlier-work covers (`orm-strength-tracker/`,
-    `tyes/`, `intelligent-tutoring-systems/`, `ape-unit/`, `chaos-colleagues/`,
-    `project-shatter/`), sourced from the old Personal-Website-2.0 repo's square
+    AI-year explorations), plus the 7 earlier-work covers (`orm-strength-tracker/`,
+    `tyes/`, `intelligent-tutoring-systems/`, `easy-budgeting/`, `ape-unit/`,
+    `chaos-colleagues/`, `project-shatter/`), sourced from the old
+    Personal-Website-2.0 repo's square
     project icons and wired via each `EARLIER_WORK` item's `cover`.
   - `experiences/` — same per-`slug` sub-folder layout (`banner.png` +
     `additional-images/`), one per `EXPERIENCES` card: `instagram/`,
     `orangeworks-innovation-lab/`, `facebook/`, `mealme/`, `dcu/` (all 16:9).
+  - `games/` — **flat** game cover icons (`<slug>.png`, no per-game sub-folder):
+    `worst-tic-tac-toe`, `banandersnatch`, `squids-tower-defense`,
+    `minigame-mashup`, `snake`. Games have no detail page (cards
+    link straight out to the hosted game), so there's no folder to hold extra
+    media. Sourced from the old Personal-Website-2.0 games-page icons; wired via
+    each `GAMES` item's `cover`.
 - `index.html` — HTML shell (CRA mount point `#root`); links favicon, icon, and
   apple-touch-icon via their `images/app-wide/` paths.
 - `resume_summer_2026.pdf` — résumé, linked from the Navbar action button.
@@ -92,7 +99,13 @@ editable in one layer.
   one-line `summary` + a `cover` banner (also under `images/projects/`).
   `EXPERIENCES` (5 entries, reverse-chronological: Instagram, OrangeWorks
   Innovation Lab, Facebook, MealMe, DCU) carry a company `title`, a one-sentence
-  `summary`, and a 16:9 `cover` at `images/experiences/<slug>/banner.png`. Its two
+  `summary`, and a 16:9 `cover` at `images/experiences/<slug>/banner.png`.
+  `GAMES` (5 entries — the browser games, ported from the old site) are unlike the
+  rest: each `href` is the **live, externally-hosted game** (GitHub Pages) rather
+  than an internal detail route, so the Games cards open in a new tab and there are
+  no `/games/:slug` detail pages for them. `cover` points at a flat
+  `images/games/<slug>.png` icon; `summary` is a placeholder pending real copy.
+  `GAMES` is standalone (not in `ALL_WORK`/`PROJECTS`). Its two
   flagship entries (`instagram`, `orangeworks-innovation-lab`) reuse the FLAGSHIPS
   slugs/hrefs/covers (only the summary is shorter) and are **not** included in
   `ALL_WORK` (avoids a duplicate-slug clash) — reconcile when experience detail
@@ -136,8 +149,11 @@ not a swapped-in component. Each is a folder with paired `Name.js` + optional
   homepage). No screen CSS — pure composition, mirroring `Experience/`. Each card
   links to its `/projects/:slug` or `/games/:slug` detail route (still
   `<InProgress>`).
-- **`Games/`** — index page (`/games`). Not built out yet — renders only the
-  shared `<InProgress>` notice.
+- **`Games/`** — the games index (`/games`). Built: a `<PageHeader>` (eyebrow
+  "The Arcade" + title "Games") over a `<CardGrid>` of `compact` `<ProjectCard>`s
+  mapped from `GAMES`, each passing `external` so the whole card links out to the
+  live hosted game in a new tab (no detail route). Same composition pattern as
+  `Projects/` / `Experience/`; no screen CSS.
 - **`WorkDetail/`** — shared detail route for one item, resolved by `:slug`
   (`/projects/:slug`, `/experience/:slug`, `/games/:slug`). Not built out yet —
   renders only `<InProgress>`.
@@ -171,6 +187,9 @@ tokens so they theme automatically. JSDoc headers document each prop API.
   The flagship cards currently pass title/subtitle/summary only. An optional
   `coverRatio` prop overrides the per-variant thumbnail ratio (default 16/9 for
   `feature`, 4/3 for `compact`) — the Experience cards pass `coverRatio="16/9"`.
+  An `external` prop (default `false`) forwards to `AppLink` so the whole card
+  opens `item.href` in a new tab with rel safety — the Games cards pass it to link
+  out to each hosted game.
 - **`CardGrid/`** — responsive auto-fit grid wrapper (`min`, `columns`, `gap`).
 - **`CardCarousel/`** — paginated horizontal-scroll track (snap + page dots,
   navigated by swipe/scroll; no arrow buttons). Used for the homepage project
@@ -236,10 +255,10 @@ These are enforced by `.cursor/rules/coding-conventions.mdc` — keep both in sy
 ## Not yet present (so you don't go looking)
 
 No state management, no backend/API, no env config in use, no test suite beyond
-the CRA smoke test. The Home, Experience, and Projects index screens are built;
-the **Games index and all project/experience/game detail pages are scaffolded
-routes only** (render `<InProgress>`) — the full write-ups are the next
-build-out. The three
+the CRA smoke test. The Home, Experience, Projects, and Games index screens are
+built; the **project/experience detail pages are scaffolded routes only** (render
+`<InProgress>`) — the full write-ups are the next build-out. (Games have no detail
+pages by design — their cards link out to the hosted game.) The three
 flagship cards (`images/experiences/`), the three AI-year exploration cards, and
-the six earlier-work cards (`images/projects/`) now all have real `cover`
+the seven earlier-work cards (`images/projects/`) now all have real `cover`
 images, so the `<Thumbnail>` placeholder is no longer used on the homepage.
