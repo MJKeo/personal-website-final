@@ -113,6 +113,57 @@ editable in one layer.
   `EARLIER_WORK`, in homepage order) backs the Projects screen; its CineMind
   entry reuses the FLAGSHIPS data but overrides the long summary with a
   one-sentence version so every grid card has single-sentence copy.
+  **Detail-page fields** (read by `WorkDetail` via `bySlug`, separate from the
+  card fields): an item may carry `tagline` (string), `writeup` (string, or an
+  array of blocks where a string is a paragraph and a `{ heading }` object is a
+  section heading), an optional `link` (`{href, label}` for the inline title
+  link), and a `gallery` (`[{src, alt}]` of `additional-images`). The CineMind
+  FLAGSHIPS entry (real tagline + a full multi-section `writeup`; `link` is
+  `https://www.cinemind.dev`, gallery is the six
+  `cinemind/additional-images/image{1..6}.png`), the `chaos-colleagues`
+  EARLIER_WORK entry (tagline + a 4-section hackathon `writeup`; `link` is its
+  Devpost page, gallery is the four `chaos-colleagues/additional-images/image{1..4}.png`),
+  the `project-shatter` EARLIER_WORK entry (tagline + a 4-section hackathon
+  `writeup`; `link` is its Devpost page, gallery is the five
+  `project-shatter/additional-images/image{1..5}.png`), the
+  `orm-strength-tracker` EARLIER_WORK entry (tagline + a 4-section `writeup`; **no
+  `link`** since the app is no longer on the App Store, gallery is the five
+  `orm-strength-tracker/additional-images/image{1..5}.png`), the `nerdbot`
+  EXPLORATIONS entry (tagline + a 6-section AI-year-experiment `writeup` on
+  tool-calling-agent design; `link` is its HuggingFace Space, gallery is the three
+  `nerdbot/additional-images/image{1..3}.png`), and the `interviewpro` EXPLORATIONS
+  entry (tagline + a 5-section AI-year `writeup` on the multi-perspective LLM-as-judge
+  feedback engine + parallel guardrail; `link` is `interviewpro.mikeohane.com`, gallery
+  is the four `interviewpro/additional-images/image{1..4}.png`), the `ape-unit`
+  EARLIER_WORK entry (tagline + a 4-section `writeup` on the Spring-2019 Data
+  Structures gamification project, framed around incentive design + the edge-case
+  testing habit; `link` is `ape-unit.github.io`, gallery is the two
+  `ape-unit/additional-images/image{1..2}.png`), and the `wizard-battle`
+  EXPLORATIONS entry (tagline + a 7-section AI-year-experiment `writeup` on
+  conveying game state to an LLM for decision-making, framed around state
+  abstraction, reasoning-before-the-answer, latency/streaming, and few-shot
+  crafting; `link` is `wizardbattle.mikeohane.com`, gallery is the three
+  `wizard-battle/additional-images/image{1..3}.png`), the `tyes` EARLIER_WORK
+  entry (tagline + a 4-section `writeup` on the Georgia Tech Grand Challenges
+  medical-device project: instrumenting the 9-hole peg test + a patient-therapist
+  portal, framed around stakeholder research and the problem-first method origin;
+  **no `link` or `gallery`** per Michael, since the project has neither), and the
+  `intelligent-tutoring-systems` EARLIER_WORK entry (tagline + a 4-section
+  `writeup` on the Georgia Tech VIP intelligent-tutoring team: concept-mining/
+  metadata over heterogeneous course material + the KNN-driven analytics/student-
+  archetype layer, framed around the messy-multi-source-data throughline to
+  CineMind and honest that it was an academic team project that hit a working demo
+  but never shipped; **no `link` or `gallery`** per Michael, since the project has
+  neither and its `additional-images/` folder is empty), and the `easy-budgeting`
+  EARLIER_WORK entry (tagline + a short 2-section `writeup` on the solo iOS budgeting app,
+  framed around restraint/scope discipline + the burndown-over-a-running-total
+  insight + a year of dogfooding; **no `link`** since it was never on the App Store,
+  gallery is the four `easy-budgeting/additional-images/image{1..4}.png` — the Budget
+  screen collapsed + expanded, then two Analyze burndown shots) have these so far.
+  Note `nerdbot` and `wizard-battle` are video-game-themed but live as regular
+  `EXPLORATIONS` projects (`category: 'project'` + a `/projects/:slug` `href`), so
+  their detail copy renders at `/projects/nerdbot` and `/projects/wizard-battle`
+  alongside the other projects (there is no `/games/:slug` route).
 
 ### Screens (routed pages) — `src/screens/<Name>/`
 **Every full page is a screen with its own route** (registered in `App.js`),
@@ -147,16 +198,28 @@ not a swapped-in component. Each is a folder with paired `Name.js` + optional
   `compact` `<ProjectCard>`s mapped from `PROJECTS`, with `showTags={false}` and
   the default 4/3 cover ratio (matching how these same cards render on the
   homepage). No screen CSS — pure composition, mirroring `Experience/`. Each card
-  links to its `/projects/:slug` or `/games/:slug` detail route (still
-  `<InProgress>`).
+  links to its `/projects/:slug` detail route (still `<InProgress>`).
 - **`Games/`** — the games index (`/games`). Built: a `<PageHeader>` (eyebrow
   "The Arcade" + title "Games") over a `<CardGrid>` of `compact` `<ProjectCard>`s
   mapped from `GAMES`, each passing `external` so the whole card links out to the
   live hosted game in a new tab (no detail route). Same composition pattern as
   `Projects/` / `Experience/`; no screen CSS.
-- **`WorkDetail/`** — shared detail route for one item, resolved by `:slug`
-  (`/projects/:slug`, `/experience/:slug`, `/games/:slug`). Not built out yet —
-  renders only `<InProgress>`.
+- **`WorkDetail/`** — shared, data-driven detail route for one item, resolved by
+  `:slug` via `bySlug` (`/projects/:slug`, `/experience/:slug`).
+  Built (`WorkDetail.js` + `WorkDetail.css`): renders inside a `<Section>` a
+  tagline (PageHeader eyebrow style) → a title row (`<h1>` + an optional inline
+  external-link icon, `HiArrowUpRight`, wrapped in `AppLink` when the item has a
+  `link`) → the full-width `writeup` blocks (PageHeader lead type scale but
+  **no** `max-width` cap; paragraph strings render as `<p>`, `{ heading }` blocks
+  as scannable `<h2>` section headings) → a bottom `<Gallery>` of the item's images
+  when present.
+  The screen mirrors the Projects/Experience type scale in `WorkDetail.css`.
+  **Items without a `writeup` fall back to `<InProgress>`**, so routes whose copy
+  isn't authored yet (everything except CineMind, Chaos Colleagues, Project
+  Shatter, ORM, Ape Unit, NerdBot, InterviewPro, Wizard Battle, Tyes,
+  Intelligent Tutoring Systems, and Easy Budgeting) keep rendering the placeholder.
+  Note: `EXPERIENCES` slugs aren't in `ALL_WORK` yet, so `/experience/:slug` still
+  resolves to `<InProgress>` (see TODOs `bySlug` reconciliation).
 - **`NotFound/`** — minimal 404 for unmatched routes (`*`).
 
 ### Components — `src/components/<Name>/`
@@ -193,7 +256,17 @@ tokens so they theme automatically. JSDoc headers document each prop API.
 - **`CardGrid/`** — responsive auto-fit grid wrapper (`min`, `columns`, `gap`).
 - **`CardCarousel/`** — paginated horizontal-scroll track (snap + page dots,
   navigated by swipe/scroll; no arrow buttons). Used for the homepage project
-  rows.
+  rows. Optional `slideSize` prop sets a `--carousel-slide-size` CSS var to
+  override the per-slide flex-basis (default card width `clamp(250px, 80%, 320px)`)
+  — the `Gallery` passes a wider value to fit ~2 images per view with a peek.
+- **`Gallery/`** — horizontal-scroll image strip that reuses `CardCarousel`
+  (with a wider `slideSize`) of clickable image tiles, plus a built-in
+  full-screen **lightbox** overlay opened on tile click (dimmed `--color-overlay`
+  backdrop, close button, prev/next when >1, closes on backdrop click + `Esc`,
+  body scroll locked while open; the opened image's `alt` renders as a visible
+  `<figcaption>` caption beneath it). Generic/data-driven — props: `images`
+  (`[{src, alt}]`), `ariaLabel`. Used by `WorkDetail` for a project/experience's
+  `additional-images`.
 - **`Thumbnail/`** — media tile; renders a themed **placeholder** (initials +
   pattern) when no `src` is supplied. Swap in real imagery later, no other change.
 - **`Tag/`** (+ `TagList`) — small pill labels for tech/category chips.
@@ -228,8 +301,9 @@ never raw primitives.
 - `primitives.css` — **Tier 1**: raw color ramps (`--sage-*`, `--clay-*`,
   `--sand-*`), 50→950. "What the color is."
 - `semantic.css` — **Tier 2**: role tokens components use (`--color-bg`,
-  `--color-text`, `--color-primary`, etc.). Light is `:root`; dark mode
-  re-points the same names via `prefers-color-scheme`. "What the color is for."
+  `--color-text`, `--color-primary`, `--color-overlay` (modal scrim), etc.).
+  Light is `:root`; dark mode re-points the same names via
+  `prefers-color-scheme`. "What the color is for."
 
 The palette is **"Fern"**: sage-green primary, terracotta ("clay") accent, warm
 sand neutrals.
@@ -256,9 +330,22 @@ These are enforced by `.cursor/rules/coding-conventions.mdc` — keep both in sy
 
 No state management, no backend/API, no env config in use, no test suite beyond
 the CRA smoke test. The Home, Experience, Projects, and Games index screens are
-built; the **project/experience detail pages are scaffolded routes only** (render
-`<InProgress>`) — the full write-ups are the next build-out. (Games have no detail
-pages by design — their cards link out to the hosted game.) The three
+built, and `WorkDetail` is now a built-out, data-driven detail screen — but
+**only CineMind (`/projects/cinemind`), Chaos Colleagues
+(`/projects/chaos-colleagues`), Project Shatter (`/projects/project-shatter`),
+ORM (`/projects/orm-strength-tracker`), Ape Unit (`/projects/ape-unit`),
+NerdBot (`/projects/nerdbot`), InterviewPro (`/projects/interviewpro`), Wizard
+Battle (`/projects/wizard-battle`), Tyes (`/projects/tyes`), Intelligent
+Tutoring Systems (`/projects/intelligent-tutoring-systems`), and Easy Budgeting
+(`/projects/easy-budgeting`) have
+authored detail copy**; every other
+detail route still falls back to `<InProgress>` until its `tagline`/`writeup`/
+`gallery` are filled in (and, for experiences, the `bySlug` reconciliation lands).
+(The hosted browser games in `GAMES` have no detail pages by design — their cards
+link out to the hosted game. NerdBot and Wizard Battle are video-game-themed but
+are regular `EXPLORATIONS` projects (`category: 'project'`), so they get real
+`/projects/nerdbot` and `/projects/wizard-battle` detail pages.)
+The three
 flagship cards (`images/experiences/`), the three AI-year exploration cards, and
 the seven earlier-work cards (`images/projects/`) now all have real `cover`
 images, so the `<Thumbnail>` placeholder is no longer used on the homepage.

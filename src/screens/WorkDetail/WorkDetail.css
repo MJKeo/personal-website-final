@@ -1,0 +1,98 @@
+/* Detail screen — mirrors the PageHeader type scale used on the Projects /
+   Experience index screens, but lets the writeup span the full Section width. */
+
+.work-detail__header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+/* Tagline = PageHeader eyebrow */
+.work-detail__tagline {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-primary-text);
+}
+
+.work-detail__title-row {
+  display: flex;
+  align-items: baseline; /* arrow's bottom sits on the title's text baseline */
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Title = PageHeader title */
+.work-detail__title {
+  margin: 0;
+  font-size: clamp(1.9rem, 5vw, 2.8rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+/* Inline link out to the live product — a green (sage) arrow whose bottom aligns
+   with the bottom of the title text (via the row's baseline alignment). */
+.work-detail__link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-primary-text);
+  font-size: clamp(1.2rem, 3vw, 1.7rem);
+  line-height: 1;
+  text-decoration: none;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.work-detail__link:hover {
+  transform: translateY(-2px);
+  color: var(--color-primary);
+}
+
+.work-detail__link:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Writeup = PageHeader lead, but full Section width (no max-width cap) */
+.work-detail__writeup {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.work-detail__writeup p {
+  margin: 0;
+  font-size: clamp(1.02rem, 2vw, 1.18rem);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+/* Section heading — breaks the writeup into scannable, decision-led sections.
+   Inherits the strong default text color (vs. the muted body) for contrast, and
+   adds a little extra breathing room above each section past the first block. */
+.work-detail__section-heading {
+  margin: 0;
+  font-size: clamp(1.25rem, 2.6vw, 1.55rem);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+.work-detail__section-heading:not(:first-child) {
+  margin-top: clamp(14px, 2.5vh, 26px);
+}
+
+.work-detail__gallery {
+  margin-top: clamp(40px, 7vh, 72px);
+}
+
+/* "Media" section label above the gallery hscroll — matches the writeup's
+   section-heading scale so it reads as a peer section. */
+.work-detail__media-label {
+  margin: 0 0 clamp(16px, 2.5vh, 24px);
+  font-size: clamp(1.25rem, 2.6vw, 1.55rem);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}

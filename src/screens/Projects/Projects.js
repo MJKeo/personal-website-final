@@ -8,8 +8,8 @@ import { PROJECTS } from '../../content/work';
  * Projects index — Michael's projects as a grid of cards (banner + title +
  * one-sentence overview): the AI-year builds first (CineMind, then the
  * explorations), then the wider non-AI work, in homepage order. Each card links
- * to its detail route (`/projects/:slug` or `/games/:slug`), which renders
- * <InProgress> until those pages exist.
+ * to its detail route (`/projects/:slug`), which renders <InProgress> until those
+ * pages exist.
  */
 function Projects() {
   return (

@@ -57,7 +57,6 @@ function App() {
           <Route path="/experience" element={<Experience />} />
           <Route path="/experience/:slug" element={<WorkDetail />} />
           <Route path="/games" element={<Games />} />
-          <Route path="/games/:slug" element={<WorkDetail />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

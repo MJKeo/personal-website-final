@@ -1,0 +1,148 @@
+/* ---- Carousel tiles ------------------------------------------------------ */
+/* Every tile is the same fixed height; its width follows the image's aspect
+   ratio (see .gallery__img), so portrait and landscape shots share one height
+   and only differ in width. The carousel runs in autoSize mode to match. */
+.gallery__tile {
+  display: block;
+  height: clamp(200px, 33vh, 308px);
+  width: auto;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  cursor: zoom-in;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.gallery__tile:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--color-primary);
+}
+
+.gallery__tile:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.gallery__img {
+  display: block;
+  height: 100%;
+  width: auto;
+}
+
+/* ---- Lightbox ------------------------------------------------------------ */
+.gallery__lightbox {
+  /* Shared geometry so the nav buttons can sit relative to the image edges. */
+  --lb-img-w: min(1100px, 92vw);
+  --lb-nav: clamp(48px, 6vw, 64px);
+  --lb-nav-gap: 14px;
+
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 4vw, 48px);
+  background: var(--color-overlay);
+}
+
+/* Image + its caption, stacked and centered as one unit inside the overlay. */
+.gallery__figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(10px, 1.6vh, 18px);
+  margin: 0;
+  max-width: var(--lb-img-w);
+  max-height: 88vh;
+}
+
+.gallery__lightbox-img {
+  max-width: 100%;
+  max-height: 74vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* The opened image's alt text, shown as a caption. Sits in its own near-opaque
+   black pill with white text so it stays readable over the image or any backdrop,
+   in either theme. */
+.gallery__caption {
+  max-width: min(var(--lb-img-w), 68ch);
+  margin: 0;
+  padding: clamp(14px, 2vh, 20px) clamp(22px, 3vw, 32px);
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  box-shadow: var(--shadow-card);
+  font-size: clamp(0.85rem, 0.8rem + 0.3vw, 1rem);
+  line-height: 1.5;
+  text-align: center;
+  text-wrap: pretty;
+}
+
+/* Shared button chrome for close + prev/next */
+.gallery__close,
+.gallery__nav {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  line-height: 1;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.gallery__close:hover,
+.gallery__nav:hover {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.gallery__close:focus-visible,
+.gallery__nav:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.gallery__close {
+  top: clamp(12px, 3vw, 28px);
+  right: clamp(12px, 3vw, 28px);
+  width: 44px;
+  height: 44px;
+  font-size: 1.6rem;
+}
+
+.gallery__nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--lb-nav);
+  height: var(--lb-nav);
+  font-size: calc(var(--lb-nav) * 0.52); /* sizes the chevron SVG (1em) */
+}
+
+.gallery__nav:hover {
+  transform: translateY(-50%) scale(1.08);
+}
+
+/* Sit just outside the image edge (so they're close to the image, not pinned to
+   the screen edge), but never past the viewport padding — so on narrow screens,
+   where the image fills the width, they fall back to overlapping the image. */
+.gallery__nav--prev {
+  left: max(var(--lb-nav-gap), calc(50% - var(--lb-img-w) / 2 - var(--lb-nav-gap) - var(--lb-nav)));
+}
+.gallery__nav--next {
+  right: max(var(--lb-nav-gap), calc(50% - var(--lb-img-w) / 2 - var(--lb-nav-gap) - var(--lb-nav)));
+}

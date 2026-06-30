@@ -11,16 +11,33 @@
 }
 
 /* Horizontal snapping track; scrollbar hidden (dots + swipe drive paging).
-   `overflow-x: auto` forces `overflow-y` to compute to `auto`, which would clip
-   the cards' vertical hover shadow. We pad the track enough to contain that
-   shadow and cancel the padding with an equal negative margin, so the clip box
-   grows but the carousel's footprint stays the same. */
+   `overflow-x: auto` forces `overflow-y` to compute to `auto`, so the scroll box
+   clips on BOTH axes — and you can't paint a card's hover shadow outside that box.
+   - Block axis (top/bottom): pad 48px, offset by the -40px margin, so the clip box
+     is tall enough to hold the shadow without changing the carousel's footprint.
+   - Inline axis (left/right): the scroll box IS the clip box, so instead of fighting
+     it we let the track go FULL-BLEED — `margin-inline: calc(--gutter * -1)` pulls the
+     clip edges out to the screen edges, and an equal `padding-inline` pushes the cards
+     back onto the content column. The nearest clip edge is now a whole gutter from the
+     cards, so their shadows never reach it; any unavoidable scroll-axis clipping lands
+     at the screen edge, where it reads as natural. `scroll-padding-inline` makes snap
+     rest the first/last card on the column, not the screen edge.
+
+   `--gutter` = the distance from the screen edge to the centered content column. It
+   MUST be a pure vw/px length (no %): padding/margin resolve % against the column, but
+   scroll-padding resolves % against the full-bleed scrollport (= the whole viewport),
+   which would zero it out and let snap jam the first card to the screen edge. The
+   numbers mirror the default <Section> (1040px max-width inside 24px / 16px gutters);
+   this assumes the carousel sits in a default-width Section (all current usages do). */
 .carousel__track {
+  --gutter: calc((100vw - min(1040px, 100vw - 48px)) / 2);
   display: flex;
   gap: 24px;
   margin-block: -40px;
-  margin-inline: 0;
-  padding: 48px 4px;
+  margin-inline: calc(var(--gutter) * -1);
+  padding-block: 48px;
+  padding-inline: var(--gutter);
+  scroll-padding-inline: var(--gutter);
   list-style: none;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -29,18 +46,45 @@
   -ms-overflow-style: none;
 }
 
+/* Mobile Section drops its gutter to 16px (32px total), so the column is wider. */
+@media (max-width: 560px) {
+  .carousel__track {
+    --gutter: calc((100vw - min(1040px, 100vw - 32px)) / 2);
+  }
+}
+
 .carousel__track::-webkit-scrollbar {
   display: none;
 }
 
 .carousel__slide {
   display: flex;
-  flex: 0 0 clamp(250px, 80%, 320px);
+  flex: 0 0 var(--carousel-slide-size, clamp(250px, 80%, 320px));
+  /* Every slide is a flush-left snap target, so the scroll always rests with the
+     leftmost visible slide aligned to the left edge. */
   scroll-snap-align: start;
+}
+
+/* The last slide snaps its end to the viewport end, so the very end of the scroll
+   (last slide flush right) is always reachable even when it can't left-align. */
+.carousel__slide:last-child {
+  scroll-snap-align: end;
 }
 
 .carousel__slide > * {
   width: 100%;
+}
+
+/* ---- Auto-size mode ------------------------------------------------------ */
+/* Slides size to their content's width instead of a fixed flex-basis, so a
+   fixed-height child (e.g. an image set to a uniform height) keeps its natural
+   aspect ratio and the slide is exactly as wide as it needs to be. */
+.carousel__track--auto .carousel__slide {
+  flex: 0 0 auto;
+}
+
+.carousel__track--auto .carousel__slide > * {
+  width: auto;
 }
 
 /* ---- Dots ---------------------------------------------------------------- */
