@@ -73,10 +73,9 @@
   text-decoration: underline;
 }
 
-/* The "Key Experiences" ("The Proof") flagship taglines carry the secondary
-   (clay) accent, setting the experience subtitles apart from the otherwise
-   primary (sage) accent the cards use. The project sections below inherit the
-   default primary (sage) accent from the card / carousel components. */
+/* The "Key Experiences" ("The Proof") flagship taglines carry the primary
+   (sage green) accent. The project sections below inherit the default primary
+   (sage) accent from the card / carousel components. */
 .home__evidence .project-card__subtitle {
-  color: var(--color-secondary-text);
+  color: var(--color-primary-text);
 }

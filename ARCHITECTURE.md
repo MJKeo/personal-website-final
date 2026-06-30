@@ -134,7 +134,7 @@ not a swapped-in component. Each is a folder with paired `Name.js` + optional
   the particles inside that band, out of the sections below. The two project
   carousels (AI builds + wider portfolio) use the default primary (sage) accent.
   In the evidence ("Key Experiences") section, the flagship card taglines
-  (`.project-card__subtitle`) are re-tinted to the secondary (clay) color via the
+  (`.project-card__subtitle`) are tinted to the primary (sage green) color via the
   `home__evidence` class.
 - **`Experience/`** — the work-history index (`/experience`). Built: a
   `<PageHeader>` (eyebrow "The Track Record" + title "Experience" + lead) over a
