@@ -26,7 +26,10 @@ personal-website-final/
 ├── ARCHITECTURE.md      This file — codebase map (the "how/where")
 ├── KEY_DECISIONS.md     Durable decisions/learnings across sessions
 ├── README.md           Default CRA readme (boilerplate)
+├── TODOs.md            Deferred-work list (memory system)
 ├── package.json        Deps + scripts
+├── .claude/            Agent config: rules/ (memory-system.md, website-copy-voice.md)
+│                       + commands/ (write-experience-details, write-project-details, ...)
 ├── .cursor/rules/      Cursor coding-convention rules (screens/components/tokens)
 ├── public/             Static assets served as-is
 ├── src/                Application source
@@ -105,11 +108,13 @@ editable in one layer.
   than an internal detail route, so the Games cards open in a new tab and there are
   no `/games/:slug` detail pages for them. `cover` points at a flat
   `images/games/<slug>.png` icon; `summary` is a placeholder pending real copy.
-  `GAMES` is standalone (not in `ALL_WORK`/`PROJECTS`). Its two
-  flagship entries (`instagram`, `orangeworks-innovation-lab`) reuse the FLAGSHIPS
-  slugs/hrefs/covers (only the summary is shorter) and are **not** included in
-  `ALL_WORK` (avoids a duplicate-slug clash) — reconcile when experience detail
-  pages need `bySlug`. A derived `PROJECTS` list (CineMind + `EXPLORATIONS` +
+  `GAMES` is standalone (not in `ALL_WORK`/`PROJECTS`). The `EXPERIENCES` entries
+  for `instagram` and `orangeworks-innovation-lab` reuse the FLAGSHIPS
+  slugs/hrefs/covers (only the summary is shorter), so to resolve experience detail
+  routes `ALL_WORK` now appends `EXPERIENCE_ONLY` (`EXPERIENCES` minus any slug
+  already in `FLAGSHIPS`), which adds `facebook`, `mealme`, and `dcu` to `bySlug`
+  without a duplicate-slug clash (the two flagship experiences are listed first, so
+  they still resolve to their fuller FLAGSHIPS copy). A derived `PROJECTS` list (CineMind + `EXPLORATIONS` +
   `EARLIER_WORK`, in homepage order) backs the Projects screen; its CineMind
   entry reuses the FLAGSHIPS data but overrides the long summary with a
   one-sentence version so every grid card has single-sentence copy.
@@ -129,37 +134,86 @@ editable in one layer.
   `orm-strength-tracker` EARLIER_WORK entry (tagline + a 4-section `writeup`; **no
   `link`** since the app is no longer on the App Store, gallery is the five
   `orm-strength-tracker/additional-images/image{1..5}.png`), the `nerdbot`
-  EXPLORATIONS entry (tagline + a 6-section AI-year-experiment `writeup` on
-  tool-calling-agent design; `link` is its HuggingFace Space, gallery is the three
+  EXPLORATIONS entry (tagline + intro + a compact 2-section `writeup` (How it works
+  + Key learnings) on tool-calling-agent design; `link` is its HuggingFace Space,
+  gallery is the three
   `nerdbot/additional-images/image{1..3}.png`), and the `interviewpro` EXPLORATIONS
   entry (tagline + a 5-section AI-year `writeup` on the multi-perspective LLM-as-judge
   feedback engine + parallel guardrail; `link` is `interviewpro.mikeohane.com`, gallery
   is the four `interviewpro/additional-images/image{1..4}.png`), the `ape-unit`
-  EARLIER_WORK entry (tagline + a 4-section `writeup` on the Spring-2019 Data
-  Structures gamification project, framed around incentive design + the edge-case
-  testing habit; `link` is `ape-unit.github.io`, gallery is the two
-  `ape-unit/additional-images/image{1..2}.png`), and the `wizard-battle`
-  EXPLORATIONS entry (tagline + a 7-section AI-year-experiment `writeup` on
-  conveying game state to an LLM for decision-making, framed around state
-  abstraction, reasoning-before-the-answer, latency/streaming, and few-shot
-  crafting; `link` is `wizardbattle.mikeohane.com`, gallery is the three
-  `wizard-battle/additional-images/image{1..3}.png`), the `tyes` EARLIER_WORK
-  entry (tagline + a 4-section `writeup` on the Georgia Tech Grand Challenges
-  medical-device project: instrumenting the 9-hole peg test + a patient-therapist
-  portal, framed around stakeholder research and the problem-first method origin;
-  **no `link` or `gallery`** per Michael, since the project has neither), and the
-  `intelligent-tutoring-systems` EARLIER_WORK entry (tagline + a 4-section
-  `writeup` on the Georgia Tech VIP intelligent-tutoring team: concept-mining/
-  metadata over heterogeneous course material + the KNN-driven analytics/student-
-  archetype layer, framed around the messy-multi-source-data throughline to
-  CineMind and honest that it was an academic team project that hit a working demo
-  but never shipped; **no `link` or `gallery`** per Michael, since the project has
-  neither and its `additional-images/` folder is empty), and the `easy-budgeting`
+  EARLIER_WORK entry (tagline + intro + a compact 2-section `writeup` (How it works +
+  What it taught me) on the Spring-2019 Data Structures gamification project, framed
+  around incentive design + the edge-case testing habit; `link` is `ape-unit.github.io`, gallery is the two
+  `ape-unit/additional-images/image{1..2}.png`), the `wizard-battle`
+  EXPLORATIONS entry (tagline + intro + a compact 2-section `writeup` (How it works
+  + Key learnings) on conveying game state to an LLM for decision-making, framed
+  around state abstraction, reasoning-before-the-answer, latency/streaming, and
+  few-shot crafting; `link` is `wizardbattle.mikeohane.com`, gallery is the three
+  `wizard-battle/additional-images/image{1..3}.png`; note this entry uses
+  `category: 'project'` + `href: '/projects/wizard-battle'`), the `tyes` EARLIER_WORK
+  entry (tagline + a compact 3-part `writeup` — overview intro, `How it works`,
+  `What I took from it` — on the Georgia Tech Grand Challenges medical-device project
+  (instrumenting the 9-hole peg test for richer fine-motor timing data); deliberately
+  scoped to Michael's actual role, the product ideation + the patient/therapist
+  interface that made the device's data readable, and NOT the hardware the rest of the
+  team built; **no `link`**, gallery is the two
+  `tyes/additional-images/image{1..2}.png`), and the
+  `intelligent-tutoring-systems` EARLIER_WORK entry (tagline + a compact 3-part
+  `writeup` — overview intro, `How it worked`, `What I took from it` — on the
+  Georgia Tech VIP intelligent-tutoring team (iterated over 2 semesters). Michael
+  was the **frontend/product** person, so the copy frames the shared idea (a course
+  buries its data/material where nobody can learn from it) as "we" and then states
+  his actual work in "I": conceiving what the product should be for its users and
+  building the two main interfaces (teacher view + student view) and the dynamic
+  charts/graphs. The system's backend mechanics (consolidating performance data,
+  KNN assignment-difficulty flagging, student-category grouping) are described in
+  neutral "under the hood" voice, NOT claimed as his. Honest that it hit a working
+  demo but never shipped; **no `link` or `gallery`** per Michael, since the project
+  has neither and its `additional-images/` folder is empty). NOTE: an earlier draft
+  wrongly led with the concept-mining/metadata work as his and drew a CineMind
+  data-throughline — corrected 2026-07-01 after Michael clarified he was the
+  frontend guy (charts/graphs + teacher/student views), not the data/backend side.
+  The `easy-budgeting`
   EARLIER_WORK entry (tagline + a short 2-section `writeup` on the solo iOS budgeting app,
   framed around restraint/scope discipline + the burndown-over-a-running-total
   insight + a year of dogfooding; **no `link`** since it was never on the App Store,
   gallery is the four `easy-budgeting/additional-images/image{1..4}.png` — the Budget
-  screen collapsed + expanded, then two Analyze burndown shots) have these so far.
+  screen collapsed + expanded, then two Analyze burndown shots), and the `dcu`
+  EXPERIENCES entry (the first experience detail page; `tagline` is the employment
+  dates `May - August 2019`; a compact 3-part `writeup` (intro + `What I did` +
+  `What it taught me`) on the summer-2019 IT internship, framed around small
+  PowerShell/Active-Directory automations plus SQL-fed PowerBI sprint dashboards
+  (the emphasis is data consolidation/preprocessing that let the team manage a
+  sprint live and retro it after, not the burndown mechanics), and the lessons that
+  a good product must both do something valued AND be usable by its intended
+  audience, and that companies of every scale still work hard at getting organized
+  (so it reads as a space with lots of room and few good products); **no `link` or
+  `gallery`**), and the `mealme` EXPERIENCES entry (tagline `June - August
+  2020`; a tight 4-sentence intro + 3 headed sections (`Making the browsing data
+  free`, `Redesigning the part users actually touch`, `What it taught me`) on the
+  summer-2020 iOS Engineer Intern stint at MealMe, a **live food-delivery
+  price-comparison platform** that was **2 founders + 2 interns** fresh out of
+  TechStars (NOT a 4-person full-time team; do not frame it as hunting for PMF or
+  mention its earlier social-food-sharing origin), framed (Pillar 1) around "know
+  your differentiator and don't overspend on what isn't it": browsing is the
+  on-ramp and the price comparison is the edge, so the centerpieces are rebuilding
+  browsing on a free MapKit+Yelp pipeline to kill map-API data costs, and a
+  research-driven browse redesign that doubled DAU with no ad spend to get users to
+  the differentiator with less friction (recommendation system kept to one
+  sentence); `What it taught me` carries better-vs-first product + ship-a-lean-MVP-
+  and-let-usage-guide-features, the discipline to pivot when a product is capped,
+  and the early-traction core-vs-commodity reality; **no `link`/`gallery`**; the
+  rough $0.10/user, ~75%, ~1M figures deliberately kept qualitative per Michael)
+  have these so far, as does the `orangeworks-innovation-lab` FLAGSHIPS entry
+  (tagline = the two intern spans `August - December 2020, August - December 2021`;
+  heading-less intro + 4 conceptual sections — `Start with a problem, not a
+  solution` / `Getting the real story out of people` / `From patterns to a pitch` /
+  `My projects and outcomes` (the 2020 + 2021 projects merged into one outcomes
+  section); **no `link`/`gallery`**), which groups both Home Depot intern stints onto one page,
+  leads with Pillar 1 (product sense), walks the year-agnostic research → interview →
+  prototype → executive-pitch method, then details the 2020 runner pre-authorization
+  app that Home Depot shipped in January 2023 (now handling millions in transactions)
+  and briefly covers the un-shipped 2021 home-management concept.
   Note `nerdbot` and `wizard-battle` are video-game-themed but live as regular
   `EXPLORATIONS` projects (`category: 'project'` + a `/projects/:slug` `href`), so
   their detail copy renders at `/projects/nerdbot` and `/projects/wizard-battle`
@@ -192,7 +246,8 @@ not a swapped-in component. Each is a folder with paired `Name.js` + optional
   `<CardGrid>` of `compact` `<ProjectCard>`s mapped from `EXPERIENCES`, each
   passing `coverRatio="16/9"` so the wide banners aren't cropped to 4:3. No screen
   CSS — pure composition; cards keep the default primary (sage) accent. Each card
-  links to its `/experience/:slug` detail route (still `<InProgress>`).
+  links to its `/experience/:slug` detail route (`dcu` and `mealme` are authored;
+  the others still `<InProgress>`).
 - **`Projects/`** — the projects index (`/projects`). Built: a `<PageHeader>`
   (eyebrow "The Build Log" + title "Projects" + lead) over a `<CardGrid>` of
   `compact` `<ProjectCard>`s mapped from `PROJECTS`, with `showTags={false}` and
@@ -217,9 +272,12 @@ not a swapped-in component. Each is a folder with paired `Name.js` + optional
   **Items without a `writeup` fall back to `<InProgress>`**, so routes whose copy
   isn't authored yet (everything except CineMind, Chaos Colleagues, Project
   Shatter, ORM, Ape Unit, NerdBot, InterviewPro, Wizard Battle, Tyes,
-  Intelligent Tutoring Systems, and Easy Budgeting) keep rendering the placeholder.
-  Note: `EXPERIENCES` slugs aren't in `ALL_WORK` yet, so `/experience/:slug` still
-  resolves to `<InProgress>` (see TODOs `bySlug` reconciliation).
+  Intelligent Tutoring Systems, Easy Budgeting, and the `dcu` + `mealme`
+  experiences) keep rendering the placeholder.
+  Note: `ALL_WORK` now appends the experience-only slugs (`facebook`, `mealme`,
+  `dcu`) via `EXPERIENCE_ONLY`, so `bySlug` resolves them and `/experience/:slug`
+  renders authored copy where it exists (currently `dcu` and `mealme`); the rest
+  still fall back to `<InProgress>` until written.
 - **`NotFound/`** — minimal 404 for unmatched routes (`*`).
 
 ### Components — `src/components/<Name>/`
@@ -336,11 +394,13 @@ built, and `WorkDetail` is now a built-out, data-driven detail screen — but
 ORM (`/projects/orm-strength-tracker`), Ape Unit (`/projects/ape-unit`),
 NerdBot (`/projects/nerdbot`), InterviewPro (`/projects/interviewpro`), Wizard
 Battle (`/projects/wizard-battle`), Tyes (`/projects/tyes`), Intelligent
-Tutoring Systems (`/projects/intelligent-tutoring-systems`), and Easy Budgeting
-(`/projects/easy-budgeting`) have
-authored detail copy**; every other
+Tutoring Systems (`/projects/intelligent-tutoring-systems`), Easy Budgeting
+(`/projects/easy-budgeting`), DCU (`/experience/dcu`), MealMe
+(`/experience/mealme`), and OrangeWorks
+(`/experience/orangeworks-innovation-lab`) have authored detail copy**; every other
 detail route still falls back to `<InProgress>` until its `tagline`/`writeup`/
-`gallery` are filled in (and, for experiences, the `bySlug` reconciliation lands).
+`gallery` are filled in. The `bySlug` reconciliation that lets experience slugs
+resolve has now landed (`EXPERIENCE_ONLY` folded into `ALL_WORK`).
 (The hosted browser games in `GAMES` have no detail pages by design — their cards
 link out to the hosted game. NerdBot and Wizard Battle are video-game-themed but
 are regular `EXPLORATIONS` projects (`category: 'project'`), so they get real

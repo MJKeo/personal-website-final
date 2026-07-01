@@ -73,3 +73,16 @@ authored.
 **Why:** Michael chose "homepage only for now." This keeps navigation honest and
 the routing architecture in place without investing in pages whose copy isn't
 written yet. Deferred build-out is tracked in `TODOs.md`.
+
+## 2026-07-01 — Website copy uses a professional register (voice overlay)
+**Decision:** All user-facing site copy follows a professional overlay on top of
+Michael's writing style (`personal_context/my_writing_style.md`), captured in
+`.claude/rules/website-copy-voice.md`. Two hard rules: (1) never undermine or
+downplay his own work (nothing framed as easy/trivial/"straightforward"), and
+(2) never use "cus" or other casual slang spellings in site copy, even though the
+base style guide lists them as his quirks. Keep his voice (problem-first, reasoning
+exposed, opinionated, "ex.", concrete examples); lift the register.
+**Why:** The site is a hiring asset; casual self-deprecation and slang undercut the
+credibility it needs. The base style guide optimizes for his authentic casual voice
+(right for personal writing, too informal here). This overlay keeps the voice
+recognizable while making it hiring-appropriate.
