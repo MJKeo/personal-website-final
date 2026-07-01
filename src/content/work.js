@@ -87,12 +87,12 @@ export const FLAGSHIPS = [
       "That's roughly where it is now: live, stable, and in active iteration. I'm focused on driving cost and latency down further and starting to actually market it as a real product, with room down the line for a monetization angle (ads being the obvious one). It's still early, but it works, it's deployed, and I own every layer of it end to end.",
     ],
     gallery: [
-      { src: '/images/projects/cinemind/additional-images/image1.png', alt: 'CineMind screenshot 1' },
-      { src: '/images/projects/cinemind/additional-images/image2.png', alt: 'CineMind screenshot 2' },
-      { src: '/images/projects/cinemind/additional-images/image3.png', alt: 'CineMind screenshot 3' },
-      { src: '/images/projects/cinemind/additional-images/image4.png', alt: 'CineMind screenshot 4' },
-      { src: '/images/projects/cinemind/additional-images/image5.png', alt: 'CineMind screenshot 5' },
-      { src: '/images/projects/cinemind/additional-images/image6.png', alt: 'CineMind screenshot 6' },
+      { src: '/images/projects/cinemind/additional-images/image1.png', alt: 'Search results for "mind bending sci-fi-thrillers' },
+      { src: '/images/projects/cinemind/additional-images/image2.png', alt: 'Similar movie search: home screen with inspirations' },
+      { src: '/images/projects/cinemind/additional-images/image3.png', alt: 'Similar movie results' },
+      { src: '/images/projects/cinemind/additional-images/image4.png', alt: 'Freeform text query breakdown' },
+      { src: '/images/projects/cinemind/additional-images/image5.png', alt: 'Movie details page (click a trait to find more movies with it)' },
+      { src: '/images/projects/cinemind/additional-images/image6.png', alt: 'Searching with active filters' },
     ],
   },
   {
@@ -156,10 +156,10 @@ export const EXPLORATIONS = [
       "And it was a real lesson in how much further a usable product is than a working prototype. Once the LLM core worked, there was still all the unglamorous stuff that actually decides whether a stranger can use the thing: failure flows for when a generation breaks, presenting dense feedback in a way that helps instead of overwhelms, the surrounding features (saving and managing multiple job applications, each with its own set of interviews), and just making it feel polished enough to trust. If I built InterviewPro today I'd do a lot of it differently, and that's the point: it was an early, deliberate step toward bigger and more complete products, and a lot of what I figured out here is exactly what ended up going into CineMind.",
     ],
     gallery: [
-      { src: '/images/projects/interviewpro/additional-images/image1.png', alt: 'The setup screen: paste a job listing URL or enter the role by hand, then attach a resume or LinkedIn export for sharper results' },
-      { src: '/images/projects/interviewpro/additional-images/image2.png', alt: 'The mock interview, a back-and-forth with an AI interviewer playing a recruiter for the target role over voice or text' },
-      { src: '/images/projects/interviewpro/additional-images/image3.png', alt: 'Answer-by-answer feedback on a response, split into why it is good, why it can be improved, and concrete opportunities to improve' },
-      { src: '/images/projects/interviewpro/additional-images/image4.png', alt: 'The research brief generated for a role: company identity, mission, growth stage and funding, core offerings, and strategic positioning on one page' },
+      { src: '/images/projects/interviewpro/additional-images/image1.png', alt: 'Home page with sample job url and candidate context attached' },
+      { src: '/images/projects/interviewpro/additional-images/image2.png', alt: 'Conducting a mock interview' },
+      { src: '/images/projects/interviewpro/additional-images/image3.png', alt: 'Per-response feedback aggregation' },
+      { src: '/images/projects/interviewpro/additional-images/image4.png', alt: 'Job listing and company deep research' },
     ],
   },
   {
@@ -201,9 +201,9 @@ export const EXPLORATIONS = [
       "NerdBot was never meant to be a big product, it was a focused experiment, and it did its job. It's where I actually learned to build tool-calling agents and integrate an external API from scratch, and those lessons fed directly into the bigger, more complete things I built afterward (the multi-agent research in InterviewPro, the whole search pipeline in CineMind). It's deployed on HuggingFace and still kicking (I went back for a v2 to fold in what I'd learned), so if you feel like arguing with an unhinged video game nerd about whether Sonic Adventure 2 is epic or cringe, go for it.",
     ],
     gallery: [
-      { src: '/images/projects/nerdbot/additional-images/image1.png', alt: 'A NerdBot conversation recommending games for a new PS5 and for someone who wants a good progression system, answering in an over-the-top enthusiastic voice' },
-      { src: '/images/projects/nerdbot/additional-images/image2.png', alt: "NerdBot delivering a passionate, all-caps verdict that Sonic Adventure 2 is 'EPIC' in response to a one-line 'epic or crap?' question" },
-      { src: '/images/projects/nerdbot/additional-images/image3.png', alt: "NerdBot recommending kid-friendly Nintendo Switch games for a 6-year-old's birthday, then following up with relaxed, non-violent exploration picks" },
+      { src: '/images/projects/nerdbot/additional-images/image1.png', alt: 'Constrained product search, handling impossible request with grace' },
+      { src: '/images/projects/nerdbot/additional-images/image2.png', alt: 'Combining parametric knowledge with concrete data' },
+      { src: '/images/projects/nerdbot/additional-images/image3.png', alt: 'Head-to-head game comparison' },
     ],
   },
   {
@@ -249,9 +249,9 @@ export const EXPLORATIONS = [
       "Wizard Battle was one of the smaller, deliberately-scoped experiments from my AI year, a sandbox I built to learn in. But it punched above its weight on lessons. Every piece of it was one long rep at the thing I now run into absolutely everywhere: a model is only ever as good as the context you hand it and the shape you let it answer in. Strip the work down to what genuinely needs a brain, hand it that work in language it can read at a glance, make it reason before it commits instead of after, and never make it do something code could do faster and more reliably. That's not wizard-battle advice, that's the exact instinct that powers the hard parts of CineMind. And under all the engineering it's still just a goofy game where 'a monkey who reached enlightenment watching David Goggins videos' can throw hands with 'one million lions', so go make something ridiculous and watch them fight.",
     ],
     gallery: [
-      { src: '/images/projects/wizard-battle/additional-images/image1.png', alt: "The pre-battle screen: two wizards the AI generated from one-line descriptions, 'Kind Hearthwarden' (from 'my neighbor, he's a really nice guy') against 'Pride Sovereign of the Savanna' (from 'one million lions'), each with element tags, a stat spread, and a full generated spellbook" },
-      { src: '/images/projects/wizard-battle/additional-images/image2.png', alt: "A duel in progress: each wizard's health, mana, and active effects down the sides, with a central turn-by-turn battle log streaming each move as it happens" },
-      { src: '/images/projects/wizard-battle/additional-images/image3.png', alt: "Another generated matchup, 'Homer Atom Melter' (from a prompt about Homer Simpson causing a meltdown) facing 'Hardened Primate Ascendant' (from 'a monkey who reached enlightenment watching David Goggins videos'), showing how a freeform sentence becomes a themed wizard with elements, stats, and spells" },
+      { src: '/images/projects/wizard-battle/additional-images/image1.png', alt: "Wizard generation screen with sample prompts" },
+      { src: '/images/projects/wizard-battle/additional-images/image2.png', alt: "A duel in progress, each action generated by the LLM in the fighting style of that wizard" },
+      { src: '/images/projects/wizard-battle/additional-images/image3.png', alt: "See which of your favorite characters would win in a fight" },
     ],
   },
 ];
@@ -355,11 +355,11 @@ export const EARLIER_WORK = [
       "It topped out at #45 in the Health & Fitness category and got downloaded around 700 times, but the part that stuck with me was the approach it kicked off: find the actual problem (you can't safely measure the thing you most want to measure), design the right answer to it before letting the code talk me out of anything, and then own it the entire way out the door, including all the boring parts that decide whether anyone ever sees it.",
     ],
     gallery: [
-      { src: '/images/projects/orm-strength-tracker/additional-images/image1.png', alt: 'The home dashboard: a recent-activity graph for bench press, the closest goal (Deadlift 315 lbs), and a grid of saved exercises' },
-      { src: '/images/projects/orm-strength-tracker/additional-images/image2.png', alt: 'The onboarding screen explaining the three things the app does: estimate a hypothetical one-rep max, compare you to similar lifters, and set goals per exercise' },
-      { src: '/images/projects/orm-strength-tracker/additional-images/image3.png', alt: 'The Bench Press detail screen: a progress graph with strength-level bands, plus best ORM, current goal, and current strength level' },
-      { src: '/images/projects/orm-strength-tracker/additional-images/image4.png', alt: 'The Records screen: each exercise listed with its best one-rep max and a colored strength-level badge' },
-      { src: '/images/projects/orm-strength-tracker/additional-images/image5.png', alt: 'The standalone One Rep Max calculator: enter reps and weight to get an estimated one-rep max, a strength level, and where you fall against standard strength tiers' },
+      { src: '/images/projects/orm-strength-tracker/additional-images/image1.png', alt: 'The home dashboard' },
+      { src: '/images/projects/orm-strength-tracker/additional-images/image2.png', alt: 'Features overview and value proposition' },
+      { src: '/images/projects/orm-strength-tracker/additional-images/image3.png', alt: 'Tracking an exercise over time' },
+      { src: '/images/projects/orm-strength-tracker/additional-images/image4.png', alt: 'Easily see your personal bests' },
+      { src: '/images/projects/orm-strength-tracker/additional-images/image5.png', alt: 'Standalone tool for calculating one rep maxes to entice downloads' },
     ],
   },
   {
@@ -390,8 +390,8 @@ export const EARLIER_WORK = [
       "This is where my whole approach was born. It was a student project, built by a team learning as it went, and it stayed a proof of concept aimed at Impact 2020 rather than something that reached a real patient, but the instinct I lead with on everything since (start from a real person and the actual bind they're in, go talk to the people who live it, and only then design the thing that needs to exist) is the exact instinct Grand Challenges forced me to practice here for the first time. CineMind and everything after it are really just that same method run again with sharper tools.",
     ],
     gallery: [
-      { src: '/images/projects/tyes/additional-images/image1.png', alt: "The 'How Our System Works' page from the Tyes portal, explaining how the instrumented peg board captures force and timing data per peg — alongside a render of the layered sensor board and a photo of the physical prototype with its grid of peg holes" },
-      { src: '/images/projects/tyes/additional-images/image2.png', alt: "The Results screen: an 'Individual Peg Times' chart plotting time-to-place for each of the 9 pegs, this week against last, above a Time Analysis breakdown — total time, average peg placement time, deviation from healthy average, and degree of impairment — turning the test from one stopwatch number into a detailed picture of motor function" },
+      { src: '/images/projects/tyes/additional-images/image1.png', alt: "Product overview" },
+      { src: '/images/projects/tyes/additional-images/image2.png', alt: "Sample results screen" },
     ],
   },
   {
@@ -414,10 +414,10 @@ export const EARLIER_WORK = [
       "There are obvious ways it could be better (custom timeframes, auto-importing expenses instead of typing each one in), and I knew that at the time. I left them out because the simple version did the job, and it did, I lived on it for over a year. It's an old project and isn't live anymore, but it's an early version of how I still work: find the real problem, build the smallest thing that solves it, and actually use it.",
     ],
     gallery: [
-      { src: '/images/projects/easy-budgeting/additional-images/image1.png', alt: 'The budget screen: total budget and budget remaining across the top, then a color-coded card per spending category (Housing, Groceries, Dining Out, Transportation, Utilities, Entertainment), each showing its set budget and amount remaining, collapsed so the whole month fits on one screen' },
-      { src: '/images/projects/easy-budgeting/additional-images/image2.png', alt: 'The same budget screen with categories expanded to reveal the individual expenses logged against each one — monthly rent and renters insurance under Housing, a run of grocery trips under Groceries — each line a date and amount' },
-      { src: '/images/projects/easy-budgeting/additional-images/image3.png', alt: 'The Analyze screen: a burndown chart of the overall budget for the month, with a scrubber reading out the budget remaining on a given day, above per-category burndowns (Housing, Groceries) showing how fast each budget is being spent down' },
-      { src: '/images/projects/easy-budgeting/additional-images/image4.png', alt: "More of the Analyze screen, scrolled to the per-category burndown charts (Groceries, Dining Out, Transportation) — each plots how quickly that category's budget drained over the month, so you read your pace and not just your balance" },
+      { src: '/images/projects/easy-budgeting/additional-images/image1.png', alt: 'Home screen: current monthly expenses grouped into custom categories' },
+      { src: '/images/projects/easy-budgeting/additional-images/image2.png', alt: 'Home screen: categories expanded' },
+      { src: '/images/projects/easy-budgeting/additional-images/image3.png', alt: 'Spending burndown chart' },
+      { src: '/images/projects/easy-budgeting/additional-images/image4.png', alt: "Spending burndown chart (part 2)" },
     ],
   },
   {
@@ -475,8 +475,8 @@ export const EARLIER_WORK = [
       "And they did. It outgrew our class pretty fast, students across campus started playing and asking what the next week's game would be, and it snowballed into an actual brand with a logo, a site, and merch (the 'Ape Unitverse', which, sure, is deeply goofy). Ape Unit was a college project and a genuinely fun one, and it's an early version of an instinct I keep coming back to: find the reason people don't care about something (here, a dry pass/fail autograder that only ever judged you), and design the thing so the reward people actually want is pulling them toward the behavior you want. It's also the first place my edge-case-testing habit and my 'make people actually want to use this' product side showed up in the same project, which is basically the combination I've been chasing ever since.",
     ],
     gallery: [
-      { src: '/images/projects/ape-unit/additional-images/image1.png', alt: "The Ape Unit landing page: the project's primate logo over the tagline 'the Ape Unitverse is here,' with buttons out to the games, merch, and GitHub" },
-      { src: '/images/projects/ape-unit/additional-images/image2.png', alt: 'The games menu, pairing each data structure from the class with its own primate-themed game: a BST with Ape Invasion, a heap with Banandersnatch, a hashmap with Ape Kong, an AVL tree with mini games, and pattern matching and sorting with APE Racer' },
+      { src: '/images/projects/ape-unit/additional-images/image1.png', alt: "Our main landing page" },
+      { src: '/images/projects/ape-unit/additional-images/image2.png', alt: 'History of the class assignments and the games we released for them' },
     ],
   },
   {
@@ -540,11 +540,11 @@ export const EARLIER_WORK = [
       "Project Shatter was a weekend prototype, but it's still one of the clearest examples I have of the way I like to work. The win wasn't the code, it was refusing to take the obvious problem at face value and digging until I found the real one (it's not 'no CS class', it's 'no time to learn that doesn't cost them money'), then designing the product around that constraint instead of around the feature I assumed I'd build. That's the same instinct I lead with on everything since: start from a real person and the actual bind they're in, figure out what genuinely needs to exist, and build that. It just happened on a much tighter clock here.",
     ],
     gallery: [
-      { src: '/images/projects/project-shatter/additional-images/image1.png', alt: 'The student dashboard listing coding challenges, each worth potential experience points' },
-      { src: '/images/projects/project-shatter/additional-images/image2.png', alt: 'A skill-assessment coding challenge with a description, input/output examples, and an in-browser code editor' },
-      { src: '/images/projects/project-shatter/additional-images/image3.png', alt: 'The Project Shatter landing page framing the problem with statistics on poverty and broadband access in Georgia' },
-      { src: '/images/projects/project-shatter/additional-images/image4.png', alt: 'A completed challenge showing a passing test run, a perfect score, and a level-up to level 15' },
-      { src: '/images/projects/project-shatter/additional-images/image5.png', alt: 'The Helpful Resources page curating free coding-education sites and tutorials' },
+      { src: '/images/projects/project-shatter/additional-images/image1.png', alt: 'Problem statement page' },
+      { src: '/images/projects/project-shatter/additional-images/image2.png', alt: 'Student dashboard showing challenges aimed at connecting students with companies' },
+      { src: '/images/projects/project-shatter/additional-images/image3.png', alt: 'Challenge details screen' },
+      { src: '/images/projects/project-shatter/additional-images/image4.png', alt: 'Successfully completed challenge' },
+      { src: '/images/projects/project-shatter/additional-images/image5.png', alt: 'Facilitating the learning process' },
     ],
   },
 ];
