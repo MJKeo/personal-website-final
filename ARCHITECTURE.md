@@ -59,7 +59,9 @@ conventions — read it first when locating, adding, or moving any image.**
     project icons and wired via each `EARLIER_WORK` item's `cover`.
   - `experiences/` — same per-`slug` sub-folder layout (`banner.png` +
     `additional-images/`), one per `EXPERIENCES` card: `instagram/`,
-    `orangeworks-innovation-lab/`, `facebook/`, `mealme/`, `dcu/` (all 16:9).
+    `orangeworks-innovation-lab/`, `facebook/`, `mealme/`, `dcu/` (all 16:9), plus
+    `independent-ai-product-development/` (folder scaffolded, no images yet —
+    empty `additional-images/` only, no `banner.png`).
   - `games/` — **flat** game cover icons (`<slug>.png`, no per-game sub-folder):
     `worst-tic-tac-toe`, `banandersnatch`, `squids-tower-defense`,
     `minigame-mashup`, `snake`. Games have no detail page (cards
@@ -100,9 +102,24 @@ editable in one layer.
   `images/experiences/`); explorations carry `title` + `summary` + `tags` + a
   `cover` (banners under `images/projects/`); earlier-work cards now carry a
   one-line `summary` + a `cover` banner (also under `images/projects/`).
-  `EXPERIENCES` (5 entries, reverse-chronological: Instagram, OrangeWorks
-  Innovation Lab, Facebook, MealMe, DCU) carry a company `title`, a one-sentence
-  `summary`, and a 16:9 `cover` at `images/experiences/<slug>/banner.png`.
+  `EXPERIENCES` (6 entries, reverse-chronological: Independent AI Product
+  Development, Instagram, OrangeWorks Innovation Lab, Facebook, MealMe, DCU) carry a
+  company `title`, a one-sentence `summary`, and a 16:9 `cover` at
+  `images/experiences/<slug>/banner.png` (the `independent-ai-product-development`
+  entry has **no `cover`** yet, so its card renders the `<Thumbnail>` placeholder;
+  its detail copy is authored — tagline `June 2025 - Now`, a 3-paragraph
+  heading-less intro + 3-section `writeup` (`A year with a shape` / `The lessons
+  that repeated` / `Where it stands`) telling the connective narrative of the
+  independent year. Per Michael the whole why-I-left story lives in the intro
+  (entrepreneurial past + Meta scale → ready to combine, no clear in-Meta path
+  for the next growth steps + already planning a move to smaller companies →
+  the LLM/agent "wild west" made it worth going all in), opportunity-framed and
+  positive; then the projects framed as applying just-learned tech to real use
+  cases at growing scale (receipt splitter + Wizard Battle brief, NerdBot the
+  first real product, InterviewPro the jump, CineMind the production-grade
+  payoff) → repeated LLM-engineering lessons → honest status incl. the ~$1,200
+  CineMind LLM spend and "iterating toward being ready to advertise" (NOT "user
+  validation"), with **no `link`/`gallery`** per the experience convention).
   `GAMES` (5 entries — the browser games, ported from the old site) are unlike the
   rest: each `href` is the **live, externally-hosted game** (GitHub Pages) rather
   than an internal detail route, so the Games cards open in a new tab and there are
@@ -213,7 +230,34 @@ editable in one layer.
   leads with Pillar 1 (product sense), walks the year-agnostic research → interview →
   prototype → executive-pitch method, then details the 2020 runner pre-authorization
   app that Home Depot shipped in January 2023 (now handling millions in transactions)
-  and briefly covers the un-shipped 2021 home-management concept.
+  and briefly covers the un-shipped 2021 home-management concept. The `facebook`
+  EXPERIENCES entry also has them (tagline `May - August 2021`; short intro + `What
+  I did` + `Outcomes and learnings` on the iOS intern summer: the never-launched
+  "events happening now" feature told as a scoping-discipline lesson, plus the
+  shipped dynamic date-line improvement; **no `link`/`gallery`**), as does the
+  `instagram` FLAGSHIPS entry (tagline = the employment dates `June 2022 - May
+  2025`; heading-less intro + 5 headed sections — `Working fast without breaking
+  things` / `Wearing whatever hat the product needs` / `The value of data` /
+  `Owning more than my own execution` / `What it taught me`; **no `link`/`gallery`**).
+  The Instagram writeup's structure is argument-first per Michael: the intro
+  outlines the four skills, then each section proves one with the big Meta stories
+  as evidence inside it (Creator Achievements cross-media expansion → shipping
+  safely at scale; Creator Goals → role fluidity; the self-initiated logging
+  overhaul (34% regression → org gold standard) → the value of data; the
+  interdependent-experiment coordination + mentoring → owning beyond your own
+  execution). No promotion/"most junior" framing, challenges framed self-inclusively
+  (never as complaints about Meta), closer is learnings-only with no AI-year bridge.
+  The `independent-ai-product-development` EXPERIENCES entry also has them
+  (tagline `June 2025 - Now`; a 3-paragraph heading-less intro that carries the
+  entire why-I-left story per Michael (entrepreneurial past + Meta scale →
+  ready to combine, next growth steps pointed to smaller companies → the
+  LLM/agent wild west made it worth going all in), then 3 headed sections —
+  `A year with a shape` / `The lessons that repeated` / `Where it stands` —
+  the connective narrative of the independent year, with the project deep-dives
+  left to their own pages and the ~$1,200 CineMind LLM-spend estimate in the
+  closing section; **no `link`/`gallery`**, and no `cover` banner image yet
+  though the `cover` path is wired). **With this, all six experience detail
+  pages are authored.**
   Note `nerdbot` and `wizard-battle` are video-game-themed but live as regular
   `EXPLORATIONS` projects (`category: 'project'` + a `/projects/:slug` `href`), so
   their detail copy renders at `/projects/nerdbot` and `/projects/wizard-battle`
@@ -246,8 +290,8 @@ not a swapped-in component. Each is a folder with paired `Name.js` + optional
   `<CardGrid>` of `compact` `<ProjectCard>`s mapped from `EXPERIENCES`, each
   passing `coverRatio="16/9"` so the wide banners aren't cropped to 4:3. No screen
   CSS — pure composition; cards keep the default primary (sage) accent. Each card
-  links to its `/experience/:slug` detail route (`dcu` and `mealme` are authored;
-  the others still `<InProgress>`).
+  links to its `/experience/:slug` detail route (all six experience pages are
+  now authored).
 - **`Projects/`** — the projects index (`/projects`). Built: a `<PageHeader>`
   (eyebrow "The Build Log" + title "Projects" + lead) over a `<CardGrid>` of
   `compact` `<ProjectCard>`s mapped from `PROJECTS`, with `showTags={false}` and
@@ -269,15 +313,12 @@ not a swapped-in component. Each is a folder with paired `Name.js` + optional
   as scannable `<h2>` section headings) → a bottom `<Gallery>` of the item's images
   when present.
   The screen mirrors the Projects/Experience type scale in `WorkDetail.css`.
-  **Items without a `writeup` fall back to `<InProgress>`**, so routes whose copy
-  isn't authored yet (everything except CineMind, Chaos Colleagues, Project
-  Shatter, ORM, Ape Unit, NerdBot, InterviewPro, Wizard Battle, Tyes,
-  Intelligent Tutoring Systems, Easy Budgeting, and the `dcu` + `mealme`
-  experiences) keep rendering the placeholder.
-  Note: `ALL_WORK` now appends the experience-only slugs (`facebook`, `mealme`,
-  `dcu`) via `EXPERIENCE_ONLY`, so `bySlug` resolves them and `/experience/:slug`
-  renders authored copy where it exists (currently `dcu` and `mealme`); the rest
-  still fall back to `<InProgress>` until written.
+  **Items without a `writeup` fall back to `<InProgress>`**, but as of 2026-07-01
+  every detail route has authored copy: all 11 project pages (CineMind, the 3
+  AI-year explorations, the 7 earlier-work items) and all 6 experience pages.
+  Note: `ALL_WORK` appends the experience-only slugs
+  (`independent-ai-product-development`, `facebook`, `mealme`, `dcu`) via
+  `EXPERIENCE_ONLY`, so `bySlug` resolves them for `/experience/:slug`.
 - **`NotFound/`** — minimal 404 for unmatched routes (`*`).
 
 ### Components — `src/components/<Name>/`
@@ -388,19 +429,14 @@ These are enforced by `.cursor/rules/coding-conventions.mdc` — keep both in sy
 
 No state management, no backend/API, no env config in use, no test suite beyond
 the CRA smoke test. The Home, Experience, Projects, and Games index screens are
-built, and `WorkDetail` is now a built-out, data-driven detail screen — but
-**only CineMind (`/projects/cinemind`), Chaos Colleagues
-(`/projects/chaos-colleagues`), Project Shatter (`/projects/project-shatter`),
-ORM (`/projects/orm-strength-tracker`), Ape Unit (`/projects/ape-unit`),
-NerdBot (`/projects/nerdbot`), InterviewPro (`/projects/interviewpro`), Wizard
-Battle (`/projects/wizard-battle`), Tyes (`/projects/tyes`), Intelligent
-Tutoring Systems (`/projects/intelligent-tutoring-systems`), Easy Budgeting
-(`/projects/easy-budgeting`), DCU (`/experience/dcu`), MealMe
-(`/experience/mealme`), and OrangeWorks
-(`/experience/orangeworks-innovation-lab`) have authored detail copy**; every other
-detail route still falls back to `<InProgress>` until its `tagline`/`writeup`/
-`gallery` are filled in. The `bySlug` reconciliation that lets experience slugs
-resolve has now landed (`EXPERIENCE_ONLY` folded into `ALL_WORK`).
+built, and `WorkDetail` is a built-out, data-driven detail screen. As of
+2026-07-01 **every detail route has authored copy**: all 11 project pages
+(CineMind, InterviewPro, NerdBot, Wizard Battle, ORM, Easy Budgeting, Tyes,
+Intelligent Tutoring Systems, Ape Unit, Chaos Colleagues, Project Shatter) and
+all 6 experience pages (Independent AI Product Development, Instagram,
+OrangeWorks, Facebook, MealMe, DCU), so `<InProgress>` no longer renders on any
+existing route. The `bySlug` reconciliation that lets experience slugs
+resolve has landed (`EXPERIENCE_ONLY` folded into `ALL_WORK`).
 (The hosted browser games in `GAMES` have no detail pages by design — their cards
 link out to the hosted game. NerdBot and Wizard Battle are video-game-themed but
 are regular `EXPLORATIONS` projects (`category: 'project'`), so they get real

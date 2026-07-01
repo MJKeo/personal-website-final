@@ -43,9 +43,11 @@ Format:
   mentions and the "Owning the whole thing" section was removed, so **the `$1,200` figure
   no longer appears anywhere in the writeup** (live link still on the title arrow) — re-add
   the cost somewhere if desired. `WorkDetail` writeups accept `{ heading }` blocks (render
-  as `<h2>`) alongside paragraph strings. Meta + Home Depot still need detail copy, and
-  their experience slugs require the `bySlug` reconciliation below before they resolve to
-  anything but `<InProgress>`._
+  as `<h2>`) alongside paragraph strings. _Done 2026-07-01: all three flagship detail
+  pages are now authored — Home Depot/OrangeWorks and Instagram/Meta both have full
+  `tagline` + `writeup` on their FLAGSHIPS entries (see the experience detail-pages
+  item below for the specifics), and the `bySlug` reconciliation landed so every slug
+  resolves._
 - [ ] 2026-06-26 — Build out the index screens (Projects, Games) and the AI /
   earlier-work detail pages — all currently render `<InProgress>`. _Experience
   index done 2026-06-29: `/experience` now renders a grid of `EXPERIENCES` cards
@@ -286,8 +288,70 @@ Format:
   search capability as a given when it wasn't; conceptual: never sized the live-event
   pool, thin/low-quality off-peak) and framed as scoping discipline he carried into
   his full-time return. Respectful/neutral on Facebook (gaps framed as HIS scoping
-  misses, not the employer's fault) per the past-employers memory._ **Still to write:
-  Instagram/Meta (needs detail fields on its FLAGSHIPS entry).**
+  misses, not the employer's fault) per the past-employers memory._ _Update
+  2026-07-01: fifth and final one done — **Instagram/Meta** (`/experience/instagram`)
+  now has full detail copy on its **FLAGSHIPS** entry (tagline = employment dates
+  `June 2022 - May 2025`; heading-less intro + 5 headed sections: `Working fast
+  without breaking things` / `Wearing whatever hat the product needs` / `The value
+  of data` / `Owning more than my own execution` / `What it taught me`; **no
+  `link`/`gallery`**), written via `/write-experience-details` from
+  `meta_context.docx` + `meta_logging_learnings.pdf` + the LinkedIn bullets.
+  Structure came from Michael directly: the intro outlines the key skills, then
+  each section proves one, with the big stories deployed as evidence INSIDE those
+  arguments (Creator Achievements cross-media expansion → shipping safely at scale;
+  Creator Goals → many hats; the logging overhaul → the value of data; the
+  ship-rerighting / interdependent-experiment coordination + mentoring → owning
+  beyond your own execution). Per Michael's guardrails: challenges framed neutrally,
+  never as complaints about Meta or coworkers (ex. the logging gaps are "we treated
+  logging as an afterthought", self-inclusive); NO promotion line (IC3→IC4 cut as
+  bragging without narrative fit) and no "most junior" framing; closer is learnings
+  only, NO bridge to the AI year. Facts used, all public on LinkedIn: 34% regression,
+  millions of creators, 2-day retention / 3-hour query windows, 3 years. Important
+  chronology kept accurate: the 34% regression + broken logger were on
+  **Achievements**, the rebuilt system was applied to **Goals** from day one (whose
+  insights became the team's primary deliverable when the feature didn't ship).
+  **All five experience detail pages are now authored (DCU, MealMe, OrangeWorks,
+  Facebook, Instagram).**_ _Update 2026-07-01: sixth one done — **Independent AI
+  Product Development** (`/experience/independent-ai-product-development`, the
+  new EXPERIENCES-only entry listed first on the grid) now has full detail copy
+  (tagline = `June 2025 - Now` per Michael's explicit format; card `summary` +
+  a 3-paragraph heading-less intro + 3 headed sections: `A year with a shape` /
+  `The lessons that repeated` / `Where it stands`; **no `link`/`gallery`**;
+  `cover` path is wired but the banner image itself is still pending), written
+  via `/write-experience-details` from `job_search_positioning.md` +
+  `independent_ai_year_framing.md` + both project writeup docs, off an outline
+  Michael approved in-conversation. Framing decisions: the page is the
+  **connective narrative of the year** (the projects' own pages hold the deep
+  dives, so each gets roughly a sentence); the deliberateness is shown by
+  confident storytelling, never by denying a gap; Meta is credited neutrally as
+  the foundation (per the past-employers memory) with the leave framed as
+  ownership/skills he wanted, not escape; the close is a confident both-halves
+  statement (scale discipline + zero-to-one judgment) with NO job pitch.
+  Structure evolution: a 6-section draft outline was cut to intro + 4 sections
+  after re-evaluation, then per Michael the `Why I left a job I liked` section
+  was **merged into the intro** — the entire why-I-left story now lives in the
+  3-paragraph intro, opportunity-framed and positive (entrepreneurial past ex.
+  Home Depot / MealMe / Grand Challenges + Meta's at-scale supplement → ready
+  to combine the two, next growth steps had no clear in-Meta path and he was
+  already planning a move to smaller companies → the LLM/agent "wild west" was
+  revolutionary enough to justify going all in, full-time, doing every part
+  himself), flowing directly into `A year with a shape`. The **$1,200**
+  figure appears as "roughly $1,200" for CineMind's total LLM spend — Michael
+  approved using it as an estimate rather than the exact $1,176. Later same
+  day: Michael hand-tuned the intro (Meta beat now "large network of engineers
+  and partners, fast execution with a high quality bar, whatever hat the
+  product needed"; "within my current position" not "within Meta"), and `A year
+  with a shape` was reframed per him — NOT a capability ladder but "take a
+  technology I'd just learned and apply it to a real use case," growing in
+  scale each time, with weighting: receipt splitter + Wizard Battle get small
+  mentions, NerdBot = first real product (still small), InterviewPro = the real
+  jump (full complicated deployed system), CineMind = the production-grade
+  payoff that only exists because of the others ("masterpiece" from his notes
+  deliberately softened per `independent_ai_year_framing.md`'s
+  don't-say-masterpiece guidance). Also corrected `Where it stands`: CineMind
+  is live and being iterated toward a state where he can start advertising it,
+  NOT "entering real user validation". **All six experience detail pages are
+  now authored.** Remaining for this entry: the `cover` banner image file._
 - [ ] 2026-07-01 — Decide whether to reference the new
   `.claude/rules/website-copy-voice.md` from `CLAUDE.md`'s memory-system table so it
   loads every session (editing `CLAUDE.md` needs Michael's OK per the memory rules).
@@ -315,9 +379,11 @@ Format:
   of authoring the DCU experience page._
 - [ ] 2026-06-26 — Confirm flagged facts before publishing externally: Home Depot
   "shipped 2023 / millions in transactions" links to the 2020 Pro Xtra
-  pre-auth app; CineMind token cost (~$1,176 in writeup vs. "unverified ~$1,200"
-  in positioning) and the 5–7s→sub-second latency fix (in positioning doc, not
+  pre-auth app; the 5–7s→sub-second latency fix (in positioning doc, not
   the CineMind writeup); IC3→IC4 promotion detail. Add to copy once verified.
+  _Partially resolved 2026-07-01: the CineMind token cost is settled — Michael
+  approved "roughly $1,200" as the public estimate (used on the new
+  independent-year experience page) instead of chasing the exact $1,176._
 - [ ] 2026-06-26 — Add real thumbnail images and any live project URLs (CineMind,
   InterviewPro, NerdBot, etc.) — none were in `personal_context`. _Partially done
   2026-06-29: the 3 flagship cards have `cover` banners (`projects/cinemind_banner.png`,
